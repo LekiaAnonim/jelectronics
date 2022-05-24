@@ -1,0 +1,28 @@
+<!-- {% extends 'base_generic.html' %} -->
+
+{% block content %}
+<div class="products-container">
+    {% if products %}
+        {% for product in products %}
+            <div class="product-container">
+                <div class="product-image">
+                    <img src="{{product.image}}" alt="{{product.model}}">
+                </div>
+                <div class="product-details">
+                    <h3>{{product.model}}</h3>
+                    <h4>{{product.category}}</h4>
+                    <h4>{{product.vendor}}</h4>
+                    <p><strong>Price:</strong><s>${{product.price}}</s></p>
+                    <p><strong>Discounted Price:</strong>${{product.discount_price}}</p>
+                    <p><strong>Amount in stock:</strong>{{product.productinstance_set.all.count}}</p>
+
+                </div>
+            </div>
+            <!-- <hr> -->
+        {% endfor %}
+
+    {% else %}
+        <p>There are no products available</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %} <title>J-Electronics</title> {% endblock %}
+    <link rel="stylesheet" href="showcase/static/css/style.css">
+</head>
+
+<body>
+    <div class="body-container">
+        <div class="header-container">
+            {% block sidebar %}
+            <nav class="header-nav">
+                <ul class="header-nav-list">
+                    <li>
+                        <a href="{% url 'showcase:index' %}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'showcase:categories' %}">Category</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'showcase:vendors' %}">Vendor</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'showcase:products' %}">Product</a>
+                    </li>
+                </ul>
+            </nav>
+            {% endblock %}
+        </div>
+        <div class="content-container">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+        <div class="footer-container">
+            {% block footer %}
+
+            {% endblock %}
+        </div>
+    </div>
+
+</body>
+
+</html>

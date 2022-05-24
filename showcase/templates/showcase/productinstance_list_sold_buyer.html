@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Products in Cart</h1>
+
+{% if productinstance_list %}
+<ul>
+
+    {% for productinst in productinstance_list %}
+    <li class="product-in-cart-list">
+        <a href="{% url 'product_detail' productinst.product.pk %}">{{productinst.product.model}}</a> --{{productinst.product.discount_price}} ({{ productinst.purchase_date }})
+    </li>
+    {% endfor %}
+</ul>
+
+{% else %}
+<p>There are no products in cart.</p>
+{% endif %}
+{% endblock %}

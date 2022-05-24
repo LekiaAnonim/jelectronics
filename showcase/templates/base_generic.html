@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}<title>Document</title>{% endblock title %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    {% block navbar %}
+        <section class="navigation">
+            <div class="nav-status-container">
+                <div class="container1">
+                    <div class="nav-status-element">
+                        <img src="{% static 'images/box_48px.png'%}" alt="bag">
+                        <p>Shipping costs</p>
+                    </div>
+                    <div class="nav-status-element">
+                        <img src="{% static 'images/mail_100px.png' %}" alt="bag">
+                        <p>Contact</p>
+                    </div>
+                </div>
+                <div class="container2">
+                    <div class="nav-status-element">
+                        <img src="{% static  'images/translation_52px.png' %}" alt="bag">
+                        <p>English</p>
+                    </div>
+                    <div class="nav-status-element">
+                        <img src="{% static 'images/settings_48px.png' %}" alt="bag">
+                        <p>Settings</p>
+                    </div>
+                    {% if request.user.is_authenticated %}
+                    <div class="username">
+                        <p>{{user.username}}</p>
+                        <a href="{% url 'logout' %}?next={{request.path}}"><img src="{% static 'images/shutdown_52px.png' %}" alt=""></a>
+                    </div>
+                    
+                    {% else %}
+                    <div class="nav-status-element">
+                        <img src="{% static 'images/customer_100px.png' %}" alt="bag">
+                        <a href="{% url 'login'  %}?next={{request.path}}"><p>Login</p></a>
+                    </div>
+                    {% endif %}
+                </div>
+
+            </div>
+            <div class="navigation-menu">
+                <div class="navigation-logo-search">
+                    <div class="logo">
+                        <img src="{% static 'images/j_52px.png' %}" alt="logo">
+                        <img src="{% static 'images/jira_96px.png' %}" alt="logo">
+                    </div>
+                    <div class="search">
+                        <input type="search" name="search" id="search-e">
+                        <div class="search-icon">
+                            <img src="{% static 'images/search_100px.png' %}" alt="Search">
+                        </div>
+                    </div>
+                    <div class="cart">
+                        <a href="{% url 'showcase:bought_products' %}"><img src="{% static 'images/shopping_cart_48px.png' %}" alt="cart"></a>
+                        <p>(₦0.00)</p>
+                    </div>
+                </div>
+                <div class="nav-menu-list">
+                    <nav>
+                        {% for category in categories %}
+                            <li>
+                                <a href="{{category.get_absolute_url}}">{{category.name}}</a>
+                            </li>
+                        {% endfor %}
+                        
+                        <!-- <li>
+                            <a href="#">Components</a>
+                        </li>
+                        <li>
+                            <a href="#">Computer & Network </a>
+                        </li>
+                        <li>
+                            <a href="#">Energy</a>
+                        </li>
+                        <li>
+                            <a href="#">Lab & Workshop</a>
+                        </li>
+                        <li>
+                            <a href="#">Embedded</a>
+                        </li>
+                        <li>
+                            <a href="#">Robotics</a>
+                        </li>
+                        <li>
+                            <a href="#">LEGO &reg;</a>
+                        </li> -->
+                    </nav>
+                </div>
+            </div>
+            <div class="product-manufacturer-list">
+                <div><p>New Products | Manufacturer A-Z |</p></div>
+                <div class="sale">
+                    <img src="{% static 'images/discount_96px.png' %}" alt="sale">
+                    <p>Sale</p>
+                </div>
+            </div>
+        </section>
+    {% endblock navbar %}
+
+    {% block showcase %}
+        <section class="product-showcase">
+            <div class="showcase-image">
+                <img class="img1" src="{% static 'images/greg-rosenke-6QnEf_b47eA-unsplash.jpg' %}" alt="image1">
+                <img class="img2" src="{% static 'images/responsive-design-1.png' %}" alt="image2">
+                <div class="showcase-description">
+                    <h2>Arduino UNO Mini Limited Edition</h2>
+                    <h3>COLLECTOR'S ITEM FOR SERIOUS ARDUINO LOVERS</h3>
+                    <input type="button" value="BUY NOW">
+                </div>
+            </div>
+        </section>
+    {% endblock showcase %}
+
+    {% block sidebar %}
+        <aside class="main-aside">
+            <div class="main-categories">
+                <h4>Main Categories</h4>
+                {% for category in categories %}
+                    <li>
+                        <a href="{{category.get_absolute_url}}">{{category.name}}</a>
+                    </li>
+                {% endfor %}
+                <!-- <li>
+                    <a href="#">LEGO &reg; Education </a>
+                </li>
+                <li>
+                    <a href="#">Components</a>
+                </li>
+                <li>
+                    <a href="#">Computer & Network </a>
+                </li>
+                <li>
+                    <a href="#">Energy</a>
+                </li>
+                <li>
+                    <a href="#">Lab & Workshop</a>
+                </li>
+                <li>
+                    <a href="#">Embedded</a>
+                </li>
+                <li>
+                    <a href="#">Robotics</a>
+                </li>
+                <li>
+                    <a href="#">LEGO &reg;</a>
+                </li> -->
+            </div>
+            <hr>
+            <div class="free-shipping-info">
+                <h4>Free Shipping</h4>
+                <p>
+                    We offer you a Free Shipping option to 25 countries
+                    , if your order value is over ₦50,000.00. For more information please check:
+                </p>
+                <br>
+                <a href="#">Free Shipping information and Conditions</a>
+            </div>
+            <hr>
+            <div class="pickup">
+                <h4>Pickup</h4>
+                <p>
+                    You can pickup your goods, after you placed an order and
+                    received a ready-for-pickup notification.
+                </p>
+            </div>
+            <hr>
+            <div>
+                <h4>LEGO&reg; Education</h4>
+                <p>
+                    Want to learn more about LEGO Education classroom solutions
+                    or have any questions?
+                    <br>
+                    <br>
+                    As an official trading partner, we are here to help you.
+                    <br>
+                </p>
+                <a href="#">Learn more</a>
+            </div>
+            <hr>
+        </aside>
+    {% endblock sidebar %}
+
+    {% block content %}
+        <section class="featured-products">
+            <h1>Featured Products</h1>
+            <hr>
+            <div class="products-container">
+                {% for product in products %}
+                    <div class="product-container">
+                        <div class="product-img-container"><img src="{{ product.image.url }}" alt="product">
+                        </div>
+                        <div class="save">
+                            <p class="percent">15</p>% 
+                            <h5>SAVE</h5>
+                        </div>
+                        <div class="product-info">
+                            <p class="product-vendor">{{product.vendor}}<sup>&reg;</sup></p>
+                            <h3 class="product-title"><a href="{% url 'showcase:product_detail' product.id %}">{{product.model}}</a></h3>
+                            <div class="previous-price">
+                                <p>Previous price: ₦<strike> {{product.price}}</strike></p>
+                            </div>
+                            <div class="cart-price">
+                                <div class="cart">
+                                    <img src="{% static 'images/shopping_cart_48px.png' %}" alt="cart">
+                                </div>
+                                <div class="price">
+                                    <span>₦</span><p> {{product.discount_price}} </p>
+                                </div>
+                            </div>
+                            <div class="product-description">
+                                <p> {{product.description}} </p>
+                            </div>
+                        </div>
+                        <p class="card-product-category">#{{product.category}}</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </section>
+        <section class="ads">
+            <h1>LEGO&reg; Education</h1>
+            <hr>
+            <div class="top-card">
+                <div class="top-card1">
+                    <div class="top-card1-text">
+                        <h4>MINT Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Porro Lorem ipsum dolor sit.</h4>
+                        <p>LEGO<sup>&reg;</sup> Education Lorem, ipsum dolor sit amet.
+                        <br> <a href="#">Learn more &RightTriangle;</a>
+                        </p>
+                    </div>
+                    <div class="top-card1-img">
+                        <img src="{% static 'images/5848152fcef1014c0b5e4967 (1).png' %}" alt="ad image">
+                        <div class="copy-lego"><p>&copy;LEGO</p></div>
+                    </div>
+                </div>
+                <div class="top-card2">
+                    <div class="logo-red">
+                        <p>LEGO</p>
+                    </div>
+                    <div class="logo-edu">
+                        <p><span>educat</span>i<span>on</span></p>
+                    </div>
+                    <div class="logo">
+                        <!-- <img src="{% static 'images/j_52px.png' %}" alt="logo"> -->
+                        <img src="{% static 'images/jira_96px.png' %}" alt="logo">
+                    </div>
+                </div>
+            </div>
+            <div class="ads-card-container">
+                <div class="ads-card">
+                    <div class="edu-logo">
+                        <div class="logo-red">
+                            <p>LEGO</p>
+                        </div>
+                        <div class="logo-edu">
+                            <p><span>educat</span>i<span>on</span></p>
+                        </div>
+                    </div>
+                    <div class="ads-content">
+                        <div class="ads-desc">
+                            <div class="ads-title">
+                                <h2>LEGO<sup>&reg;</sup> Education Coding Express</h2>
+                            </div>
+                            <div class="ads-text">
+                                <h4>
+                                    Confidence in learning <br> <a href="#">Starts here &NestedGreaterGreater; </a>
+                                </h4>
+                            </div>
+                            <div class="copy-lego">
+                                <p>&copy;LEGO</p>
+                            </div>
+                        </div>
+                        <div class="ads-card-img">
+                            <img src="{% static 'images/car-cartoon2.png' %}" alt="image name">
+                        </div>
+                    </div>
+                </div>
+                <div class="ads-card">
+                    <div class="edu-logo">
+                        <div class="logo-red">
+                            <p>LEGO</p>
+                        </div>
+                        <div class="logo-edu">
+                            <p><span>educat</span>i<span>on</span></p>
+                        </div>
+                    </div>
+                    <div class="ads-content">
+                        <div class="ads-desc">
+                            <div class="ads-title">
+                                <h2>LEGO<sup>&reg;</sup> Education Coding Express</h2>
+                            </div>
+                            <div class="ads-text">
+                                <h4>
+                                    Confidence in learning <br> <a href="#">Starts here &NestedGreaterGreater;</a>
+                                </h4>
+                            </div>
+                            <div class="copy-lego">
+                                <p>&copy;LEGO</p>
+                            </div>
+                        </div>
+                        <div class="ads-card-img">
+                            <img src="{% static 'images/car-cartoon2.png' %}" alt="image name">
+                        </div>
+                    </div>
+                </div>
+                <div class="ads-card">
+                    <div class="edu-logo">
+                        <div class="logo-red">
+                            <p>LEGO</p>
+                        </div>
+                        <div class="logo-edu">
+                            <p><span>educat</span>i<span>on</span></p>
+                        </div>
+                    </div>
+                    <div class="ads-content">
+                        <div class="ads-desc">
+                            <div class="ads-title">
+                                <h2>LEGO<sup>&reg;</sup> Education Coding Express</h2>
+                            </div>
+                            <div class="ads-text">
+                                <h4>
+                                    Confidence in learning <br> <a href="#">Starts here &NestedGreaterGreater;</a>
+                                </h4>
+                            </div>
+                            <div class="copy-lego">
+                                <p>&copy;LEGO</p>
+                            </div>
+                        </div>
+                        <div class="ads-card-img">
+                            <img src="{% static 'images/car-cartoon2.png' %}" alt="image name">
+                        </div>
+                    </div>
+                </div>
+                <div class="ads-card">
+                    <div class="edu-logo">
+                        <div class="logo-red">
+                            <p>LEGO</p>
+                        </div>
+                        <div class="logo-edu">
+                            <p><span>educat</span>i<span>on</span></p>
+                        </div>
+                    </div>
+                    <div class="ads-content">
+                        <div class="ads-desc">
+                            <div class="ads-title">
+                                <h2>LEGO<sup>&reg;</sup> Education Coding Express</h2>
+                            </div>
+                            <div class="ads-text">
+                                <h4>
+                                    Confidence in learning <br> <a href="#">Starts here &NestedGreaterGreater;</a>
+                                </h4>
+                            </div>
+                            <div class="copy-lego">
+                                <p>&copy;LEGO</p>
+                            </div>
+                        </div>
+                        <div class="ads-card-img">
+                            <img src="{% static 'images/car-cartoon2.png' %}" alt="image name">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endblock content %}
+
+    {% block footer %}
+        <footer>
+            <div class="footer">
+                <div class="footer1">
+                    <div class="newsletter-contact">
+                        <div class="newsletter">
+                            <div class="footer-subheading">
+                                <img class="footer-ico" src="{% static 'images/circled_envelope_100px.png' %}" alt="envelope">
+                                <h2>Newsletter</h2>
+                            </div>
+                            <div class="footer-subheading-content">
+                                <p>Here you can sign up for our newsletter. For this, please provide your e-mail address.</p>
+                                <div class="search">
+                                    <input type="email" name="email" id="email">
+                                    <div class="search-icon">
+                                        <img src="{% static 'images/paper_plane_48px.png' %}" alt="Search">
+                                    </div>
+                                </div>
+                            </div>  
+                            
+                        </div>
+                        <div class="contact-us">
+                            <div class="footer-subheading">
+                                <img class="footer-ico" src="{% static 'images/viber_100px.png' %}" alt="envelope">
+                                <h2>Contact us</h2>
+                            </div>
+                            <div class="footer-subheading-content">
+                                <p>Do you have any question? Use our contact form and  we will be right there for you.</p>
+                                <a href="#">Go to the contact form</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="customer-center">
+                        <h2>Customer Center</h2>
+                        <p>Language: English</p>
+                        <br>
+                        
+                        
+                        <li><a href="#">LEGO&reg; Education Support</a></li>
+                        
+                        <li><a href="#">FAQ</a></li>
+                        
+                        <li><a href="#">Shipping costs</a></li>
+                        
+                        <li><a href="#">Right of Revocation</a></li>
+                        <br>
+                        <li><a href="#">GTC</a></li>
+                        
+                        <li><a href="#">Privacy Policy</a></li>
+                        
+                        <li><a href="#">Legal Notice</a></li>
+                        
+                        <li><a href="#">Cookie Policy</a></li>
+                        
+                    </div>
+                </div>
+                <hr>
+                <div class="payment-methods">
+                    <div>
+                        <h2>Payment methods</h2>
+                        <p>You can choose from a variety of secure payment <br>
+                        methods. There are no additional fees.
+                        </p>
+                    </div>
+                    <div class="payment-vendors">
+                        <div class="paypal">
+                            <img src="{% static 'images/paypal_96px.png' %}" alt="paypal">
+                            <p>Pay<span>Pal</span></p>
+                        </div>
+                        <div class="visa-card">
+                            <div class="visa">VISA</div>
+                            <img src="{% static 'images/mastercard_logo_96px.png' %}" alt="visa">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    {% endblock footer %}
+
+    {% block scripts %}
+        <script src="{% static 'js/app.js' %}"></script>
+    {% endblock scripts %}
+</body>
+
+</html>
