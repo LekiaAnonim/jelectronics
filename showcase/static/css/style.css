@@ -4,6 +4,8 @@ body {
   background-size: cover;
   font-size: 16px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  /* max-width: 1200px; */
+
 }
 h1,
 h2,
@@ -26,7 +28,7 @@ a {
   display: flex;
   background-color: rgb(95, 141, 35);
   color: #fff;
-  height: 30px;
+  height: 1.875rem;
   padding: 0;
   margin-top: 0;
 }
@@ -43,23 +45,23 @@ a {
   width: 50%;
   justify-content: right;
   align-items: center;
-  margin-left: 10px;
+  margin-left: 0.625rem;
 }
 .navigation .username{
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 10px;
+  margin-right: 0.625rem;
 }
 .navigation .username p{
   color: #fff;
   font-weight: bold;
 }
 .navigation .username img{
-  width: 15px;
-  height: 15px;
-  margin-left: 5px;
-  margin-top: 5px;
+  width: 0.9375rem;
+  height: 0.9375rem;
+  margin-left: 0.3125rem;
+  margin-top: 0.3125rem;
 }
 .navigation .username p:first-letter{
   text-transform: uppercase;
@@ -69,29 +71,29 @@ a {
   padding: 0;
   align-items: center;
   justify-content: center;
-  margin: 0 30px 0 0;
+  margin: 0 1.875rem 0 0;
 }
 .navigation .nav-status-element img {
-  width: 15px;
-  height: 15px;
-  margin-right: 3px;
+  width: 0.9375rem;
+  height: 0.9375rem;
+  margin-right: 0.1875rem;
 }
 .navigation-menu {
   background-color: black;
   color: #fff;
-  padding: 10px 0 15px 0;
+  padding: 0.625rem 0 0.9375rem 0;
 }
 .logo {
   display: flex;
 }
 .logo img {
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 .nav-menu-list nav {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 30px;
+  margin-top: 1.875rem;
   max-width: 100%;
   padding: 0;
 }
@@ -108,7 +110,7 @@ a {
 }
 li {
   list-style: none;
-  margin-left: 30px;
+  margin-left: 1.875rem;
 }
 a {
   text-decoration: none;
@@ -121,7 +123,7 @@ a {
 }
 .search {
   display: flex;
-  height: 40px;
+  height: 2.5rem;
   width: 82%;
   margin: 0 0 0 5%;
 }
@@ -130,19 +132,19 @@ a {
   align-items: center;
   justify-content: center;
   height: 100%;
-  width: 40px;
+  width: 2.5rem;
   margin: 0;
-  border: 0.5px solid rgb(95, 141, 35);
-  border-radius: 0 4px 4px 0;
+  border: 0.03125rem solid rgb(95, 141, 35);
+  border-radius: 0 0.25rem 0.25rem 0;
   background-color: rgb(95, 141, 35);
 }
 .search input {
-  border-radius: 4px 0 0 4px;
+  border-radius: 0.25rem 0 0 0.25rem;
   width: 100%;
   max-height: 100%;
 }
 .search .search-icon img {
-  width: 15px;
+  width: 0.9375rem;
 }
 .cart {
   display: flex;
@@ -153,12 +155,12 @@ a {
 }
 
 .cart img {
-  width: 25px;
-  height: 25px;
+  width: 1.5625rem;
+  height: 1.5625rem;
 }
 .product-manufacturer-list {
   width: 100%;
-  height: 30px;
+  height: 1.875rem;
   background-color: rgb(197, 211, 200);
   display: flex;
   align-items: center;
@@ -174,14 +176,14 @@ a {
   justify-content: center;
 }
 .product-manufacturer-list .sale img {
-  width: 20px;
-  height: 20px;
-  margin-left: 5px;
-  margin-right: 2px;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: 0.3125rem;
+  margin-right: 0.3125rem;
 }
 .product-showcase {
   width: 100%;
-  height: 180px;
+  height: 11.25rem;
 }
 .product-showcase .showcase-image {
   max-width: 100%;
@@ -213,22 +215,22 @@ h3 {
 }
 .showcase-description h3 {
   font-size: 0.7em;
-  margin: 0 0 30px 0;
+  margin: 0 0 1.875rem 0;
 }
 .showcase-description input {
   font-weight: bolder;
   background-color: rgba(0, 0, 0, 0.2);
   color: #fff;
-  padding: 5px 10px 5px 10px;
-  border: 1px solid #fff;
+  padding: 0.3125rem 0.625rem 0.3125rem 0.625rem;
+  border: 0.0625rem solid #fff;
 }
 .main-aside {
   float: left;
-  width: 200px;
+  width: 12.5rem;
   color: rgb(211, 211, 211);
-  margin-left: 10px;
-  padding-right: 10px;
-  border-right: 0.5px solid rgb(173, 172, 172);
+  margin-left: 0.625rem;
+  padding-right: 0.625rem;
+  border-right: 0.03125rem solid rgb(173, 172, 172);
 }
 .main-aside h2 {
   color: rgb(255, 255, 255);
@@ -237,7 +239,7 @@ h3 {
   color: rgb(190, 185, 185);
 }
 .main-aside .main-categories li {
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 .main-aside a {
   color: rgb(95, 141, 35);
@@ -247,8 +249,11 @@ h3 {
   margin: 0;
 }
 .featured-products {
-  float: right;
-  width: 82%;
+  /* float: right; */
+  /* width: 82%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   /* border: solid; */
 }
 .products-container {
@@ -262,16 +267,16 @@ h3 {
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  width: 250px;
-  height: 500px;
-  border: 2px solid rgb(223, 217, 217);
-  border-radius: 5px;
-  margin: 5px auto 20px 0;
+  width: 15.625rem;
+  height: 31.25rem;
+  border: 0.125rem solid rgb(223, 217, 217);
+  border-radius: 0.3125rem;
+  margin: 0.3125rem auto 1.25rem 0;
   position: relative;
 }
 .product-img-container {
   width: 100%;
-  height: 200px;
+  height: 12.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -287,9 +292,9 @@ h3 {
   background-color: rgb(95, 141, 35);
   margin: -40% auto 0 80%;
   /* float: right; */
-  width: 40px;
-  height: 48px;
-  border-radius: 3px;
+  width: 2.5rem;
+  height: 3rem;
+  border-radius: 0.1375rem;
   display: flex;
   align-items: center;
   text-align: center;
@@ -315,7 +320,7 @@ h3 {
   font-weight: 550;
 }
 .product-info {
-  margin: 45px 5px 5px 5px;
+  margin: 2.8125rem 0.3125rem 0.3125rem 0.3125rem;
 }
 .product-container .product-vendor {
   margin: 0 0 0 0;
@@ -343,15 +348,15 @@ h3 {
   display: flex;
   width: 100%;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
   padding-bottom: 0;
   position: relative;
 }
 .product-container .cart-price .cart {
   background-color: rgb(95, 141, 35);
-  width: 40px;
-  height: 40px;
-  border-radius: 5px;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.3125rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -362,12 +367,12 @@ h3 {
   cursor: pointer;
 }
 .product-container .cart-price .cart img {
-  width: 15px;
-  height: 15px;
+  width: 0.9375rem;
+  height: 0.9375rem;
 }
 .product-container .cart-price .price {
   margin-left: 40%;
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: bolder;
   color: rgb(145, 145, 145);
   position: absolute;
@@ -387,23 +392,23 @@ h3 {
 .product-container .card-product-category {
   position: absolute;
   bottom: 0;
-  left: 5px;
+  left: 0.3125rem;
   font-weight: 900;
 }
 
 .ads {
   float: right;
   width: 82%;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 3.125rem;
+  margin-bottom: 3.125rem;
 }
 .ads .top-card {
   display: flex;
   align-items: center;
   width: 100%;
   height: 22vh;
-  border: 0.8px solid rgb(212, 211, 211);
-  margin-bottom: 20px;
+  border: 0.05rem solid rgb(212, 211, 211);
+  margin-bottom: 1.25rem;
   /* padding-bottom: 10px; */
 }
 .ads .top-card1 {
@@ -418,8 +423,8 @@ h3 {
 .ads .top-card1-text {
   width: 75%;
   height: 100%;
-  margin-left: 5px;
-  padding-top: 5px;
+  margin-left: 0.3125rem;
+  padding-top: 0.3125rem;
 }
 .ads .top-card1-text h4 {
   margin: 0;
@@ -457,8 +462,8 @@ h3 {
 
   display: flex;
   align-items: end;
-  padding: auto 5px auto 0;
-  margin-left: -40px;
+  padding: auto 0.3125rem auto 0;
+  margin-left: -2.5rem;
   /* justify-content: center; */
 }
 .copy-lego p {
@@ -488,34 +493,34 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   background-color: rgb(206, 17, 17);
   font-size: 1.2rem;
   font-style: oblique;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   color: #fff;
-  margin: 0 5px 0 10px;
+  margin: 0 0.3125rem 0 0.625rem;
 }
 .logo-edu {
   /* width: 45px; */
   display: flex;
   align-items: center;
-  height: 40px;
+  height: 2.5rem;
   place-content: center;
-  border-top: 1px solid rgb(0, 140, 255);
+  border-top: 0.0625rem solid rgb(0, 140, 255);
 }
 .logo-edu p {
   font-size: 1.3rem;
   font-weight: bolder;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  margin: 10px 0 3px 0;
+  margin: 0.625rem 0 0.1875rem 0;
 }
 .logo-edu span {
   border-bottom: solid rgb(0, 140, 255);
 }
 .top-card2 .logo {
-  margin-left: 30px;
+  margin-left: 1.875rem;
 }
 .ads-card-container {
   display: flex;
@@ -523,18 +528,18 @@ h3 {
   justify-content: space-evenly;
 }
 .ads-card {
-  border: 1.8px solid rgb(128, 126, 126);
-  padding: 20px;
+  border: 0.1125rem solid rgb(128, 126, 126);
+  padding: 1.25rem;
   width: 45%;
   height: 30vw;
-  min-width: 280px;
-  min-height: 280px;
+  min-width: 17.5rem;
+  min-height: 17.5rem;
   position: relative;
   /* margin-right: 10px; */
 }
 .ads-card .ads-title {
-  width: 250px;
-  margin: 15px 0 0 0;
+  width: 15.625rem;
+  margin: 0.9375rem 0 0 0;
   padding: 0;
 }
 .ads-card .ads-title h2 {
@@ -543,7 +548,7 @@ h3 {
   /* padding: 0; */
 }
 .ads-card .ads-text h4 {
-  margin: 10px 0 0 0;
+  margin: 0.625rem 0 0 0;
   font-size: 1.2rem;
   font-weight: bolder;
   color: green;
@@ -553,14 +558,14 @@ h3 {
   color: green;
 }
 .ads-card .copy-lego {
-  margin: 10px 0 0 0;
+  margin: 0.625rem 0 0 0;
   padding: 0;
   height: auto;
   width: fit-content;
   max-height: 100%;
   display: flex;
   position: absolute;
-  left: 5px;
+  left: 0.3125rem;
   bottom: 0px;
 }
 .ads-card .copy-lego p {
@@ -585,9 +590,9 @@ h3 {
   height: auto;
 }
 .footer {
-  margin-top: 50px;
+  margin-top: 3.125rem;
   /* border-top: solid #fff; */
-  padding-bottom: 50px;
+  padding-bottom: 3.125rem;
   /* padding-left: 10px; */
 }
 .footer1 {
@@ -606,14 +611,14 @@ footer .footer-subheading {
   align-items: center;
 }
 footer .footer-ico {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.625rem;
 }
 .footer-subheading-content {
   margin-top: 0;
   padding-top: 0;
-  margin-left: 30px;
+  margin-left: 1.875rem;
 }
 .footer-subheading-content p {
   margin-top: 0;
@@ -630,24 +635,24 @@ footer .footer-ico {
   flex-wrap: wrap;
 }
 .payment-vendors div {
-  margin-right: 20px;
+  margin-right: 1.25rem;
 }
 .paypal {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #fff;
-  padding: 15px;
-  height: 30px;
+  padding: 0.9375rem;
+  height: 1.875rem;
   font-family: cursive;
 }
 .paypal img {
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 .paypal p {
   color: rgb(52, 0, 121);
-  font-size: 30px;
+  font-size: 1.875rem;
   font-weight: 900;
 }
 .paypal span {
@@ -658,8 +663,8 @@ footer .footer-ico {
   align-items: center;
   justify-content: center;
   background-color: #fff;
-  padding: 15px;
-  height: 30px;
+  padding: 0.9375rem;
+  height: 1.875rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .visa-card .visa {
@@ -670,19 +675,19 @@ footer .footer-ico {
   align-items: center;
   justify-content: center;
   font-size: larger;
-  width: 60px;
-  height: 30px;
+  width: 3.75rem;
+  height: 1.875rem;
   font-weight: bolder;
-  margin-right: 5px;
+  margin-right: 0.3125rem;
 }
 .visa-card img {
-  width: 60px;
-  height: 60px;
+  width: 3.75rem;
+  height: 3.75rem;
 }
 
 
 .toggle-nav a{
-  margin-left: 15px;
+  margin-left: 0.9375rem;
 }
 
 .toggle-nav :nth-child(1){
@@ -693,19 +698,19 @@ footer .footer-ico {
 }
 .toggle-nav span{
   color: rgb(255, 255, 255) !important;
-  margin-left: 10px;
+  margin-left: 0.625rem;
 }
 .product-detail-info {
-  width: 83%;
+  /* width: 83%; */
   /* float: right; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
 }
 .product-detail {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
   width: 100%;
   /* border: solid #fff; */
   /* margin-top: 0; */
@@ -726,8 +731,8 @@ footer .footer-ico {
   /* padding-top: 0; */
   height: 30vw;
   width: 30vw;
-  min-width: 300px;
-  min-height: 300px;
+  min-width: 18.75rem;
+  min-height: 18.75rem;
   /* border: solid; */
   /* background-color: white; */
   display: flex;
@@ -748,13 +753,13 @@ footer .footer-ico {
   justify-content: space-evenly;
   align-items: center;
   width: 80%;
-  margin-top: 10px;
+  margin-top: 0.625rem;
 }
 .product-instance-photos {
   width: 5vw;
   height: 5vw;
-  min-width: 50px;
-  min-height: 50px;
+  min-width: 3.125rem;
+  min-height: 3.125rem;
   display: flex;
   justify-content: space-evenly;
   /* margin-right: 30px; */
@@ -770,7 +775,7 @@ footer .footer-ico {
   height: 100%;
 }
 .share {
-  margin-top: 5px;
+  margin-top: 0.3125rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -779,14 +784,14 @@ footer .footer-ico {
 .share img {
   width: 2rem;
   height: 2rem;
-  margin-right: 10px;
+  margin-right: 0.625rem;
 }
 .active-h {
-  border-bottom: 2px solid;
+  border-bottom: 0.125rem solid;
 }
 .product-detail-aside {
-  border: 0.5px solid #fff;
-  padding: 20px;
+  border: 0.03125rem solid #fff;
+  padding: 125rem.;
 }
 .product-detail-aside .price :nth-child(1) {
   padding-bottom: 0;
@@ -805,10 +810,10 @@ footer .footer-ico {
 }
 
 .status .available {
-  width: 15px;
-  height: 13px;
-  margin-right: 5px;
-  margin-top: 19px;
+  width: 0.9375rem;
+  height: 0.8125rem;
+  margin-right: 0.3125rem;
+  margin-top: 1.1875rem;
   background-color: green;
 }
 .amount-stock{
@@ -818,54 +823,54 @@ footer .footer-ico {
 }
 .amount input {
   width: 90%;
-  height: 30px;
-  margin-bottom: 10px;
+  height: 1.875rem;
+  margin-bottom: 0.625rem;
   border: none;
-  border-radius: 3px;
+  border-radius: 0.1875rem;
 }
 .addtocart_quantity{
   width: 90%;
-  height: 30px;
-  margin-bottom: 10px;
+  height: 1.875rem;
+  margin-bottom: 0.625rem;
   border: none;
-  border-radius: 3px;
+  border-radius: 0.1875rem;
 }
 .amount button {
   display: flex;
   width: 91.5%;
-  height: 35px;
+  height: 2.1875rem;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
   font-size: 1.2rem;
   color: #fff;
   font-weight: bolder;
   background-color: rgb(42, 105, 6);
   border: none;
-  border-radius: 3px;
+  border-radius: 0.1875rem;
 }
 .amount button img {
-  width: 20px;
-  height: 20px;
-  margin-right: 7px;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.4375rem;
 }
 .amount p {
   font-style: italic;
 }
 .vendor-logo {
   width: 90%;
-  height: 120px;
+  height: 7.5rem;
   background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 .vendor-logo p {
   font-size: 2rem;
   color: #000;
   font-weight: 900;
-  letter-spacing: -3px;
+  letter-spacing: -0.1875rem;
 }
 .vendor-logo p span {
   color: rgb(253, 186, 0);
@@ -891,8 +896,8 @@ td {
   flex-wrap: wrap;
   color: green;
   border-bottom: 1px solid #fff;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
+  margin-bottom: 0.625rem;
+  padding-bottom: 0.625rem;
 }
 .productinstance-description{
   /* width: fit-content; */
@@ -900,6 +905,8 @@ td {
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
+  margin-left: 10%;
+
 }
 .productinstance-description ul li {
   list-style: circle;
