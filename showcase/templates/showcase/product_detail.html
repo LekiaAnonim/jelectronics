@@ -1,5 +1,6 @@
 {% extends 'base_generic.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 
 
@@ -121,6 +122,84 @@
         </ul>
         </p>
     </div>
+    <!-- Product Review -->
+    <div class="col-md-8 card mb-4 mt-3">
+        <div class="card">
+            <h2>{{comments.count}} comments</h2>
+            <h3>Leave a comment</h3>
+        </div>
+    </div>
+    <div class="card-body">
+        {% if comment %}
+        <div class="alert alert-success" role="alert">
+            Your comment is awaiting moderation
+        </div>
+        {% else %}
+        <form class="forms" method="post">
+            {% csrf_token %}
+            {{comment_form.name}}
+            <div class="text-button">
+                {{comment_form.body}}
+                <button type="submit" class="btn" ><img src="{% static 'images/paper_plane_48px.png' %}" alt="send comment"></button>
+            </div>
+            
+        </form>
+        {% endif %}
+    </div>
+    <div class="comment-card">
+
+        {% for com in comments %}
+        <div class="comments">
+            <div class="comment-container">
+                <div class="user-image">
+                    <img src="{% static 'images/client_management_96px.png' %}" alt="user avatar">
+                </div>
+                <div class="comment-text">
+                    <div class="comment-status">
+                        <p class="user-name">{{com.name}}</p>
+                        <span class="comment-date">{{com.created_on}}</span>
+                    </div>
+                    <div class="comment-body">
+                        {{com.body|linebreaks}}
+                    </div>
+                </div>
+            </div>
+            <button class="reply">Reply</button>
+            {% for reply in com.children %}
+                <p><span>{{com.name}}: </span>{{reply.name}} | {{reply.created_on}}</p>
+                <li>{{reply.body}}</li>
+            {% endfor %}
+            <!-- <form class="forms" action="." method="post">
+                {{comment_form|crispy}}
+                {% csrf_token %}
+                <input type="hidden" name="parent_id" value="{{comment.id}}">
+                <input type="submit" value="Reply">
+            </form> -->
+            <form class="forms replies" action="" method="post">
+                {% csrf_token %}
+                {{comment_form.name}}
+                <div class="close">
+                    <img src="{% static 'images/Close_100px.png' %}" alt="close reply form">
+                </div>
+                <div class="text-button">
+                    
+                    {{comment_form.body}}
+                    <input type="hidden" name="parent" value="{{comment.pk}}">
+                    <button type="submit" class="btn"><img src="{% static 'images/paper_plane_48px.png' %}"
+                            alt="send comment"></button>
+                </div>
+            </form>
+        </div>
+        {% endfor %}
+
+    </div>
 </div>
 
 {% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'js/app.js' %}"></script>
+<!-- <script src="{% static 'js/hamburger.js' %}"></script> -->
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+{% endblock scripts %}

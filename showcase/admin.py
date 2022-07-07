@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Category, Vendor, Product, ProductInstance
+from .models import Category, Vendor, Product, ProductInstance, Comment
 
 admin.site.register(Category)
 
@@ -32,3 +32,13 @@ class ProductInline(admin.TabularInline):
 class VendorAdmin(admin.ModelAdmin):
     list_display = ('name')
     inlines = [ProductInline, ProductInstanceInline]
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'body', 'product', 'created_on', 'active')
+    list_filter = ('active', 'created_on')
+    search_fields = ('name', 'body')
+    actions = ['approve_comments']
+
+    def approve_comments(self, request, queryset):
+        queryset.update(active = True)

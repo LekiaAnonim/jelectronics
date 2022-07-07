@@ -45,4 +45,9 @@ urlpatterns = [
         view=views.SoldProductsByUserListview.as_view(),
         name='bought_products'
     ),
+        path(
+        route='product/cart',
+        view=views.Cart.as_view(),
+        name='cart_products'
+    ),
 ]

@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 # Create your models here.
 
@@ -33,6 +34,7 @@ class Product(models.Model):
     """Model for representing product"""
     model = models.CharField(
         max_length=250, help_text='Enter product model', unique=True)
+    # slug = models.SlugField(max_length=100)
     vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True,
                                help_text='Select a vendor for this product')
     category = models.ForeignKey(Category, on_delete=models.SET_NULL,
@@ -46,6 +48,10 @@ class Product(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return self.model
+
+    # def save(self, *args, **kwargs):
+    #     self.slug = slugify(self.model, allow_unicode=True)
+    #     super(Product, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('product_detail', args=[str(self.model)])
@@ -80,3 +86,27 @@ class ProductInstance(models.Model):
     def get_absolute_url(self):
         return reverse('product_detail', args=[str(self.model)])
 
+
+class Comment(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments')
+    name = models.CharField(max_length=80)
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='reply')
+
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return'Comment {} by {}'.format(self.body, self.name)
+
+    @property
+    def children(self):
+        return Comment.objects.filter(parent=self).reverse()
+        
+    @property
+    def is_parent(self):
+        if self.parent is None:
+            return True
+        return False

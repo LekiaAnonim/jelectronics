@@ -62,40 +62,19 @@
                         </div>
                     </div>
                     <div class="cart">
-                        <a href="{% url 'showcase:bought_products' %}"><img src="{% static 'images/shopping_cart_48px.png' %}" alt="cart"></a>
-                        <p>(₦0.00)</p>
+                        <a href="{% url 'showcase:cart_products' %}"><img src="{% static 'images/shopping_cart_48px.png' %}" alt="cart"></a>
+                        (₦<p class="cart-price">0.00</p>)
                     </div>
                 </div>
                 <div class="nav-menu-list">
-                    <nav>
+                    <img class="hamburger-menu" src="{% static 'images/Menu_52px.png' %}" alt="hamburger menu">
+                    <div class="nav-list">
                         {% for category in categories %}
                             <li>
                                 <a href="{{category.get_absolute_url}}">{{category.name}}</a>
                             </li>
                         {% endfor %}
-                        
-                        <!-- <li>
-                            <a href="#">Components</a>
-                        </li>
-                        <li>
-                            <a href="#">Computer & Network </a>
-                        </li>
-                        <li>
-                            <a href="#">Energy</a>
-                        </li>
-                        <li>
-                            <a href="#">Lab & Workshop</a>
-                        </li>
-                        <li>
-                            <a href="#">Embedded</a>
-                        </li>
-                        <li>
-                            <a href="#">Robotics</a>
-                        </li>
-                        <li>
-                            <a href="#">LEGO &reg;</a>
-                        </li> -->
-                    </nav>
+                    </div>
                 </div>
             </div>
             <div class="product-manufacturer-list">
@@ -455,7 +434,7 @@
     {% endblock footer %}
 
     {% block scripts %}
-        <script src="{% static 'js/app.js' %}"></script>
+        <script src="{% static 'js/hamburger.js' %}"></script>
     {% endblock scripts %}
 </body>
 

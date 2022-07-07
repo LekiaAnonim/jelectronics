@@ -1,19 +1,12 @@
 
 var display_img = document.querySelector(".photo-display img");
-
 var select_img = document.querySelectorAll(".product-instance-photos img");
-
-console.log(select_img);
-
-// Array.from(select_img).forEach(function (image) {
-//     image.removeAttribute('style');
-// });
 
 
 Array.from(select_img).forEach(function (image) {
 
     var select_img_link = image.getAttribute("src");
-    
+    image.style.border = 'none';
 
     image.addEventListener('click', function (e) {
         
@@ -58,4 +51,29 @@ addCartForm.addEventListener('submit', function (e) {
     const quantity = addToCart.value;
     var new_price = quantity*price;
     document.querySelector('.disc-price').innerHTML = new_price;
+    document.querySelector('.cart-price').innerHTML = new_price;
+    document.querySelector('.cart-price').setAttribute('style','color: green; font-weight: 900;');
 });
+
+// Comment & Reply
+
+const replyComment = document.querySelectorAll('.reply');
+
+const replyForm = document.querySelectorAll('.replies');
+const closeReplyForm = document.querySelectorAll('.close');
+
+const replyCommentArray = Array.from(replyComment);
+const replyFormArray = Array.from(replyForm);
+const closeReplyFormArray = Array.from(closeReplyForm);
+
+for (let i = 0; i < replyCommentArray.length; i++) {
+    replyCommentArray[i].addEventListener('click', function (e) {
+        e.preventDefault();
+        replyFormArray[i].setAttribute('style', 'display: block');
+    })
+
+    closeReplyFormArray[i].addEventListener('click', function (e) {
+        e.preventDefault();
+        replyFormArray[i].removeAttribute('style', 'display: block');
+    })
+}

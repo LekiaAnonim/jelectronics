@@ -1,0 +1,55 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="cart-tabs">
+        <div class="cart-tab">
+            <p>1. Shopping Cart</p>
+        </div>
+        <div class="cart-tab">
+            <p>2. Welcome</p>
+        </div>
+        <div class="cart-tab">
+            <p>3. Order summary</p>
+        </div>
+        <div class="cart-tab">
+            <p>4. Check and order</p>
+        </div>
+    </div>
+    <hr>
+
+    <h1>Your Shopping Cart</h1>
+    <hr>
+    {% if productinst.status == 'a' %}
+        {% for productinst in productinstance_list %}
+        
+            <div class="cart-info">
+                <img src="{{productinst.product.image.url}}" alt="{{productinst.product.model}}">
+                <div class="cart-info-detail">
+                    <h2>{{productinst.product.model}}</h2>
+                    <p>Article number: 1895{{productinst.product.id}}</p>
+                    <p>Price per unit: ₦{{productinst.product.discount_price}}</p>
+                    <div class="status">
+                        <div class="available"></div>
+                        <p>On stock, ready for delivery on the next business day </p>
+                    </div>
+                    <input type="button" value="Remove">
+                </div>
+                <div class="cart-quantity">
+                    <input type="number" name="quantity" id="quantity">
+                    <div class="refresh">
+                        <img src="{% static 'images/reset_100px.png'%}" alt="">
+                    </div>
+                </div>
+                ₦<p class="total-price">{{productinst.product.discount_price}}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+    <p>There are no products in cart.</p>
+    {% endif %}
+    
+    
+
+
+{% endblock content %}
