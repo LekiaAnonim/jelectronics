@@ -25,11 +25,11 @@ urlpatterns = [
         view=views.CategoryListView.as_view(),
         name='categories'
     ),
-    path(
-        route='category/<int:pk>',
-        view=views.CategoryDetailView.as_view(),
-        name='category_detail'
-    ),
+    # path(
+    #     route='category/<int:pk>',
+    #     view=views.CategoryDetailView.as_view(),
+    #     name='category_detail'
+    # ),
     path(
         route='vendors/',
         view=views.VendorListView.as_view(),
@@ -45,9 +45,14 @@ urlpatterns = [
         view=views.SoldProductsByUserListview.as_view(),
         name='bought_products'
     ),
-        path(
+    path(
         route='product/cart',
         view=views.Cart.as_view(),
         name='cart_products'
+    ),
+    path(
+        route='category/<int:pk>',
+        view=views.CategoryArticlesListView.as_view(),
+        name='category_products'
     ),
 ]

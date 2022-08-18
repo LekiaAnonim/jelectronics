@@ -167,6 +167,23 @@ class ProductDetailView(generic.DetailView, generic.edit.ProcessFormView):
 #         return context
 
 
+class CategoryArticlesListView(generic.ListView):
+    model = Product
+    paginate_by = 12
+    context_object_name = 'products'
+    template_name = 'showcase/category_products.html'
+
+
+    def get_queryset(self):
+        category = get_object_or_404(Category, pk=self.kwargs.get('pk'))
+        return Product.objects.filter(category=category)
+
+    def get_context_data(self, **kwargs):
+        context = super(CategoryArticlesListView, self).get_context_data(**kwargs)
+        category = get_object_or_404(Category, pk=self.kwargs.get('pk'))
+        context['category'] = category
+        return context
+
 class CategoryListView(generic.ListView):
     model = Category
     paginate_by = 4

@@ -7,54 +7,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block title %}<title>Document</title>{% endblock title %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block styles %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock styles %}
 </head>
 
 <body>
 
     {% block navbar %}
-        <section class="navigation">
-            <div class="nav-status-container">
-                <div class="container1">
-                    <div class="nav-status-element">
-                        <img src="{% static 'images/box_48px.png'%}" alt="bag">
-                        <p>Shipping costs</p>
-                    </div>
-                    <div class="nav-status-element">
-                        <img src="{% static 'images/mail_100px.png' %}" alt="bag">
-                        <p>Contact</p>
-                    </div>
-                </div>
-                <div class="container2">
-                    <div class="nav-status-element">
-                        <img src="{% static  'images/translation_52px.png' %}" alt="bag">
-                        <p>English</p>
-                    </div>
-                    <div class="nav-status-element">
-                        <img src="{% static 'images/settings_48px.png' %}" alt="bag">
-                        <p>Settings</p>
-                    </div>
-                    {% if request.user.is_authenticated %}
-                    <div class="username">
-                        <p>{{user.username}}</p>
-                        <a href="{% url 'logout' %}?next={{request.path}}"><img src="{% static 'images/shutdown_52px.png' %}" alt=""></a>
-                    </div>
-                    
-                    {% else %}
-                    <div class="nav-status-element">
-                        <img src="{% static 'images/customer_100px.png' %}" alt="bag">
-                        <a href="{% url 'login'  %}?next={{request.path}}"><p>Login</p></a>
-                    </div>
-                    {% endif %}
-                </div>
-
-            </div>
+        <div class="navigation">
             <div class="navigation-menu">
-                <div class="navigation-logo-search">
-                    <div class="logo">
-                        <img src="{% static 'images/j_52px.png' %}" alt="logo">
-                        <img src="{% static 'images/jira_96px.png' %}" alt="logo">
+                <div class="nav-status-container">
+                    <div class="container1">
+                        <div class="nav-status-element">
+                            <img src="{% static 'images/box_48px.png'%}" alt="bag">
+                            <p>Shipping costs</p>
+                        </div>
+                        <div class="nav-status-element">
+                            <img src="{% static 'images/mail_100px.png' %}" alt="bag">
+                            <p>Contact</p>
+                        </div>
                     </div>
+                    <div class="container2">
+                        <div class="nav-status-element">
+                            <img src="{% static  'images/translation_52px.png' %}" alt="bag">
+                            <p>English</p>
+                        </div>
+                        <div class="nav-status-element">
+                            <img src="{% static 'images/settings_48px.png' %}" alt="bag">
+                            <p>Settings</p>
+                        </div>
+                        {% if request.user.is_authenticated %}
+                        <div class="username">
+                            <p>{{user.username}}</p>
+                            <a href="{% url 'logout' %}?next={{request.path}}"><img src="{% static 'images/shutdown_52px.png' %}"
+                                    alt=""></a>
+                        </div>
+                
+                        {% else %}
+                        <div class="nav-status-element">
+                            <img src="{% static 'images/customer_100px.png' %}" alt="bag">
+                            <a href="{% url 'login'  %}?next={{request.path}}">
+                                <p>Login</p>
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                
+                </div>
+                <div class="nav-menu-list">
+                    <div class="navigation-logo-search">
+                        <div class="logo">
+                            <img src="{% static 'images/j_52px.png' %}" alt="logo">
+                            <img src="{% static 'images/jira_96px.png' %}" alt="logo">
+                        </div>
+                    </div>
+                    <div class="nav-list">
+                        <li>
+                            <p>Products</p>
+                        </li>
+                        <li><p>Vendors</p></li>
+                    </div>
+                    <!-- <img class="hamburger-menu" src="{% static 'images/Menu_52px.png' %}" alt="hamburger menu"> -->
+
+                    <!-- <div class="nav-list">
+                        {% for category in categories %}
+                            <li>
+                                <a href="{{category.get_absolute_url}}">{{category.name}}</a>
+                            </li>
+                        {% endfor %}
+                    </div> -->
                     <div class="search">
                         <input type="search" name="search" id="search-e">
                         <div class="search-icon">
@@ -63,41 +85,52 @@
                     </div>
                     <div class="cart">
                         <a href="{% url 'showcase:cart_products' %}"><img src="{% static 'images/shopping_cart_48px.png' %}" alt="cart"></a>
-                        (₦<p class="cart-price">0.00</p>)
+                        (₦<p>0.00</p>)
                     </div>
                 </div>
-                <div class="nav-menu-list">
-                    <img class="hamburger-menu" src="{% static 'images/Menu_52px.png' %}" alt="hamburger menu">
-                    <div class="nav-list">
-                        {% for category in categories %}
-                            <li>
-                                <a href="{{category.get_absolute_url}}">{{category.name}}</a>
-                            </li>
-                        {% endfor %}
+                <div class="product-manufacturer-list">
+                    <div>
+                        <p>New Products | Manufacturer A-Z |</p>
+                    </div>
+                    <div class="sale">
+                        <img src="{% static 'images/discount_96px.png' %}" alt="sale">
+                        <p>Sale</p>
                     </div>
                 </div>
             </div>
-            <div class="product-manufacturer-list">
-                <div><p>New Products | Manufacturer A-Z |</p></div>
-                <div class="sale">
-                    <img src="{% static 'images/discount_96px.png' %}" alt="sale">
-                    <p>Sale</p>
-                </div>
-            </div>
-        </section>
+        </div>
     {% endblock navbar %}
 
     {% block showcase %}
         <section class="product-showcase">
-            <div class="showcase-image">
-                <img class="img1" src="{% static 'images/greg-rosenke-6QnEf_b47eA-unsplash.jpg' %}" alt="image1">
-                <img class="img2" src="{% static 'images/responsive-design-1.png' %}" alt="image2">
-                <div class="showcase-description">
-                    <h2>Arduino UNO Mini Limited Edition</h2>
-                    <h3>COLLECTOR'S ITEM FOR SERIOUS ARDUINO LOVERS</h3>
-                    <input type="button" value="BUY NOW">
+            <div id="slider">
+                <div class="showcase-image">
+                    <img class="img1" src="{% static 'images/offshore-drilling-packages-card.jpg' %}" alt="image1">
+                    <div class="showcase-description">
+                        <h2>HUGE setting force, super low shock force</h2>
+                        <h3>The Sure Set from Wellbore Solutions boasts no need for oil, a 10-min redress time, a super compact design</h3>
+                        <input type="button" value="BUY NOW">
+                    </div>
+                </div>
+                <div class="showcase-image">
+                    <img class="img1" src="{% static 'images/offshoredrillingworker.jpg' %}" alt="image2">
+                    <div class="showcase-description">
+                        <h2>Surface chokes: a new category of products</h2>
+                        <h3>Pressure and flow control across a wide range of applications. <br>Match the trim configuration to YOUR field conditions.</h3>
+                        <input type="button" value="BUY NOW">
+                    </div>
+                </div>
+                <div class="showcase-image">
+                    <img class="img1" src="{% static 'images/depositphotos_115801522-stock-photo-operator-recording-operation-of-oil.jpg' %}" alt="image1">
+                    <div class="showcase-description">
+                        <h2>Introducing the renowned XQMS BlueSteel Fluid End</h2>
+                        <h3>Up to 12% longer life than leading competitors and now available exclusively on Oilfield Marketplace!</h3>
+                        <input type="button" value="BUY NOW">
+                    </div>
                 </div>
             </div>
+            <div class="slider-control">
+            </div> 
         </section>
     {% endblock showcase %}
 
@@ -107,7 +140,7 @@
                 <h4>Main Categories</h4>
                 {% for category in categories %}
                     <li>
-                        <a href="{{category.get_absolute_url}}">{{category.name}}</a>
+                        <a href="{% url 'showcase:category_products' category.id %}">{{category.name}}</a>
                     </li>
                 {% endfor %}
                 <!-- <li>
@@ -184,30 +217,30 @@
                             <h5>SAVE</h5>
                         </div>
                         <div class="product-info">
-                            <p class="product-vendor">{{product.vendor}}<sup>&reg;</sup></p>
+                            <!-- <p class="product-vendor">{{product.vendor}}<sup>&reg;</sup></p> -->
                             <h3 class="product-title"><a href="{% url 'showcase:product_detail' product.id %}">{{product.model}}</a></h3>
                             <div class="previous-price">
-                                <p>Previous price: ₦<strike> {{product.price}}</strike></p>
+                                <p>Previous price: $<strike> {{product.price}}</strike></p>
                             </div>
                             <div class="cart-price">
                                 <div class="cart">
                                     <img src="{% static 'images/shopping_cart_48px.png' %}" alt="cart">
                                 </div>
                                 <div class="price">
-                                    <span>₦</span><p> {{product.discount_price}} </p>
+                                    <span>$</span><p> {{product.discount_price}} </p>
                                 </div>
                             </div>
-                            <div class="product-description">
+                            <!-- <div class="product-description">
                                 <p> {{product.description}} </p>
-                            </div>
+                            </div> -->
                         </div>
-                        <p class="card-product-category">#{{product.category}}</p>
+                        <!-- <p class="card-product-category">#{{product.category}}</p> -->
                     </div>
                 {% endfor %}
             </div>
 
         </section>
-        <section class="ads">
+        <!-- <section class="ads">
             <h1>LEGO&reg; Education</h1>
             <hr>
             <div class="top-card">
@@ -232,7 +265,6 @@
                         <p><span>educat</span>i<span>on</span></p>
                     </div>
                     <div class="logo">
-                        <!-- <img src="{% static 'images/j_52px.png' %}" alt="logo"> -->
                         <img src="{% static 'images/jira_96px.png' %}" alt="logo">
                     </div>
                 </div>
@@ -351,7 +383,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
     {% endblock content %}
 
     {% block footer %}
@@ -435,6 +467,7 @@
 
     {% block scripts %}
         <script src="{% static 'js/hamburger.js' %}"></script>
+        <script src="{% static 'js/slider.js' %}"></script>
     {% endblock scripts %}
 </body>
 
