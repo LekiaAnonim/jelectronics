@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+{% load i18n %}
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     {% block title %}<title>Document</title>{% endblock title %}
     {% block styles %}
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" /> -->
     {% endblock styles %}
 </head>
 
@@ -19,27 +24,30 @@
             <div class="navigation-menu">
                 <div class="nav-status-container">
                     <div class="container1">
-                        <div class="nav-status-element">
-                            <img src="{% static 'images/box_48px.png'%}" alt="bag">
-                            <p>Shipping costs</p>
-                        </div>
-                        <div class="nav-status-element">
-                            <img src="{% static 'images/mail_100px.png' %}" alt="bag">
-                            <p>Contact</p>
+                        <div class="nav-status-element languages">
+                            <img src="{% static  'images/translation_52px.png' %}" alt="bag">
+                            <p class="sel-languages">Select language</p>
+                            {% get_current_language as CURRENT_LANGUAGE %}
+                            {% get_available_languages as AVAILABLE_LANGUAGES %}
+                            {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
+                            {% for language in languages %}
+                            <div class="lang-container">
+                                <a href="/{{ language.code }}/" {% if language.code == CURRENT_LANGUAGE %} class="active" {% endif %}>
+                                {{ language.name_local }}
+                                </a>
+                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="container2">
                         <div class="nav-status-element">
-                            <img src="{% static  'images/translation_52px.png' %}" alt="bag">
-                            <p>English</p>
-                        </div>
-                        <div class="nav-status-element">
                             <img src="{% static 'images/settings_48px.png' %}" alt="bag">
-                            <p>Settings</p>
+                            <a href="{% url 'showcase:register' %}">Sign Up</a>
+                            
                         </div>
                         {% if request.user.is_authenticated %}
                         <div class="username">
-                            <p>{{user.username}}</p>
+                            <a href="{% url 'logout' %}?next={{request.path}}">{{user.username}}</a>
                             <a href="{% url 'logout' %}?next={{request.path}}"><img src="{% static 'images/shutdown_52px.png' %}"
                                     alt=""></a>
                         </div>
@@ -48,7 +56,7 @@
                         <div class="nav-status-element">
                             <img src="{% static 'images/customer_100px.png' %}" alt="bag">
                             <a href="{% url 'login'  %}?next={{request.path}}">
-                                <p>Login</p>
+                                Login
                             </a>
                         </div>
                         {% endif %}
@@ -57,26 +65,36 @@
                 </div>
                 <div class="nav-menu-list">
                     <div class="navigation-logo-search">
-                        <div class="logo">
-                            <img src="{% static 'images/j_52px.png' %}" alt="logo">
-                            <img src="{% static 'images/jira_96px.png' %}" alt="logo">
-                        </div>
+                        <a href="{% url 'showcase:index' %}">
+                            <div class="logo">
+                                <img src="{% static 'images/j_52px.png' %}" alt="logo">
+                                <img src="{% static 'images/jira_96px.png' %}" alt="logo">
+                            </div>
+                        </a>
+                        
                     </div>
                     <div class="nav-list">
                         <li>
                             <p>Products</p>
+                            <div class="nav-dropdown">
+                                {% for category in categories %}
+                                <a href="{% url 'showcase:category_products' category.id %}">
+                                    <div class="dropdown-name">{{category.name}}</div>
+                                </a>
+                                {% endfor %}
+                            </div>
                         </li>
-                        <li><p>Vendors</p></li>
+                        <li>
+                            <p>Vendors</p>
+                            <div class="nav-dropdown">
+                                {% for vendor in vendors %}
+                                <a href="{% url 'showcase:vendor_products' vendor.id %}">
+                                    <div class="dropdown-name">{{vendor.name}}</div>
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </li>
                     </div>
-                    <!-- <img class="hamburger-menu" src="{% static 'images/Menu_52px.png' %}" alt="hamburger menu"> -->
-
-                    <!-- <div class="nav-list">
-                        {% for category in categories %}
-                            <li>
-                                <a href="{{category.get_absolute_url}}">{{category.name}}</a>
-                            </li>
-                        {% endfor %}
-                    </div> -->
                     <div class="search">
                         <input type="search" name="search" id="search-e">
                         <div class="search-icon">
@@ -84,11 +102,12 @@
                         </div>
                     </div>
                     <div class="cart">
-                        <a href="{% url 'showcase:cart_products' %}"><img src="{% static 'images/shopping_cart_48px.png' %}" alt="cart"></a>
-                        (₦<p>0.00</p>)
+                        <div class="amount-in-cart">{{amount_in_cart}}</div>
+                        <a href="{% url 'showcase:cart_products'%}"><img src="{% static 'images/shopping_cart_48px.png' %}" alt="cart"></a>
+                        ($<p>{{total_price}}</p>)
                     </div>
                 </div>
-                <div class="product-manufacturer-list">
+                <!-- <div class="product-manufacturer-list">
                     <div>
                         <p>New Products | Manufacturer A-Z |</p>
                     </div>
@@ -96,7 +115,7 @@
                         <img src="{% static 'images/discount_96px.png' %}" alt="sale">
                         <p>Sale</p>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     {% endblock navbar %}
@@ -107,30 +126,40 @@
                 <div class="showcase-image">
                     <img class="img1" src="{% static 'images/offshore-drilling-packages-card.jpg' %}" alt="image1">
                     <div class="showcase-description">
-                        <h2>HUGE setting force, super low shock force</h2>
-                        <h3>The Sure Set from Wellbore Solutions boasts no need for oil, a 10-min redress time, a super compact design</h3>
-                        <input type="button" value="BUY NOW">
+                        <div class="show-desc">
+                            <h2>HUGE setting force, super low shock force</h2>
+                            <h3>The Sure Set from Wellbore Solutions boasts no need for oil, a 10-min redress time, a super compact design</h3>
+                            <!-- <input type="button" value="BUY NOW"> -->
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="showcase-image">
                     <img class="img1" src="{% static 'images/offshoredrillingworker.jpg' %}" alt="image2">
                     <div class="showcase-description">
-                        <h2>Surface chokes: a new category of products</h2>
-                        <h3>Pressure and flow control across a wide range of applications. <br>Match the trim configuration to YOUR field conditions.</h3>
-                        <input type="button" value="BUY NOW">
+                        <div class="show-desc">
+                            <h2>Surface chokes: a new category of products</h2>
+                            <h3>Pressure and flow control across a wide range of applications. <br>Match the trim configuration to YOUR field
+                                conditions.</h3>
+                            <!-- <input type="button" value="BUY NOW"> -->
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="showcase-image">
                     <img class="img1" src="{% static 'images/depositphotos_115801522-stock-photo-operator-recording-operation-of-oil.jpg' %}" alt="image1">
                     <div class="showcase-description">
-                        <h2>Introducing the renowned XQMS BlueSteel Fluid End</h2>
+                        <div class="show-desc">
+                            <h2>Introducing the renowned XQMS BlueSteel Fluid End</h2>
                         <h3>Up to 12% longer life than leading competitors and now available exclusively on Oilfield Marketplace!</h3>
-                        <input type="button" value="BUY NOW">
+                        </div>
+                        
+                        <!-- <input type="button" value="BUY NOW"> -->
                     </div>
                 </div>
             </div>
-            <div class="slider-control">
-            </div> 
+            <!-- <div class="slider-control">
+            </div>  -->
         </section>
     {% endblock showcase %}
 
@@ -143,37 +172,14 @@
                         <a href="{% url 'showcase:category_products' category.id %}">{{category.name}}</a>
                     </li>
                 {% endfor %}
-                <!-- <li>
-                    <a href="#">LEGO &reg; Education </a>
-                </li>
-                <li>
-                    <a href="#">Components</a>
-                </li>
-                <li>
-                    <a href="#">Computer & Network </a>
-                </li>
-                <li>
-                    <a href="#">Energy</a>
-                </li>
-                <li>
-                    <a href="#">Lab & Workshop</a>
-                </li>
-                <li>
-                    <a href="#">Embedded</a>
-                </li>
-                <li>
-                    <a href="#">Robotics</a>
-                </li>
-                <li>
-                    <a href="#">LEGO &reg;</a>
-                </li> -->
+                
             </div>
             <hr>
             <div class="free-shipping-info">
                 <h4>Free Shipping</h4>
                 <p>
                     We offer you a Free Shipping option to 25 countries
-                    , if your order value is over ₦50,000.00. For more information please check:
+                    , if your order value is over $15,000.00. For more information please check:
                 </p>
                 <br>
                 <a href="#">Free Shipping information and Conditions</a>
@@ -208,8 +214,8 @@
             <h1>Featured Products</h1>
             <hr>
             <div class="products-container">
-                {% for product in products %}
-                    <div class="product-container">
+                {% for product in products|slice:":12" %}
+                    <a href="{% url 'showcase:product_detail' product.id %}"><div class="product-container">
                         <div class="product-img-container"><img src="{{ product.image.url }}" alt="product">
                         </div>
                         <div class="save">
@@ -217,8 +223,7 @@
                             <h5>SAVE</h5>
                         </div>
                         <div class="product-info">
-                            <!-- <p class="product-vendor">{{product.vendor}}<sup>&reg;</sup></p> -->
-                            <h3 class="product-title"><a href="{% url 'showcase:product_detail' product.id %}">{{product.model}}</a></h3>
+                            <h3 class="product-title">{{product.model}}</h3>
                             <div class="previous-price">
                                 <p>Previous price: $<strike> {{product.price}}</strike></p>
                             </div>
@@ -230,15 +235,13 @@
                                     <span>$</span><p> {{product.discount_price}} </p>
                                 </div>
                             </div>
-                            <!-- <div class="product-description">
-                                <p> {{product.description}} </p>
-                            </div> -->
                         </div>
-                        <!-- <p class="card-product-category">#{{product.category}}</p> -->
-                    </div>
+                    </div></a>
                 {% endfor %}
             </div>
-
+            <div class="view-all">
+                <a href="{% url 'showcase:products' %}"><button>View All</button></a>
+            </div>
         </section>
         <!-- <section class="ads">
             <h1>LEGO&reg; Education</h1>
@@ -385,7 +388,9 @@
             </div>
         </section> -->
     {% endblock content %}
-
+    {% block pagination %}
+    
+    {% endblock %}
     {% block footer %}
         <footer>
             <div class="footer">
@@ -468,6 +473,36 @@
     {% block scripts %}
         <script src="{% static 'js/hamburger.js' %}"></script>
         <script src="{% static 'js/slider.js' %}"></script>
+        <script src="{% static 'js/app.js' %}"></script>
+        <script src="{% static 'js/tab.js' %}"></script>
+
+        <!-- Start of LiveChat (www.livechatinc.com) code -->
+        <script type="text/javascript">
+            window.__lc = window.__lc || {};
+            window.__lc.license = 14743161;
+            ; (function (n, t, c) {
+                function i(n) { return e._h ? e._h.apply(null, n) : e._q.push(n) };
+                var e = {
+                    _q: [], _h: null, _v: "2.0", on: function () { i(["on", c.call(arguments)]) }, once: function () {
+                        i(["once", c.call(arguments)])
+                    }, off: function () { i(["off", c.call(arguments)]) },
+                    get: function () {
+                        if (!e._h) throw new Error("[LiveChatWidget] You can't use getters before load.");
+                        return i(["get", c.call(arguments)])
+                    }, call: function () { i(["call", c.call(arguments)]) }, init: function () {
+                        var n = t.createElement("script");
+                        n.async = !0, n.type = "text/javascript",
+                            n.src = "https://cdn.livechatinc.com/tracking.js", t.head.appendChild(n)
+                    }
+                };
+                !n.__lc.asyncInit && e.init(), n.LiveChatWidget = n.LiveChatWidget || e
+            }(window, document, [].slice))
+        </script>
+        <noscript>
+            <a href="https://www.livechatinc.com/chat-with/14743161/" rel="nofollow">Chat with us</a>,
+            powered by <a href="https://www.livechatinc.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a>
+        </noscript>
+        <!-- End of LiveChat code -->
     {% endblock scripts %}
 </body>
 

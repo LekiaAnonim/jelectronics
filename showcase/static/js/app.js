@@ -32,28 +32,28 @@ var currentlist = Array.from(current);
 
 var percent_save = (previouslist.innerHTML - currentlist.innerHTML) * 100 / previouslist.innerHTML;
 
-// savelist.forEach(function (item) {
-
     
 for (let i = 0; i < previouslist.length; i++) {
 
     savelist[i].innerHTML = Math.round((previouslist[i].innerHTML - currentlist[i].innerHTML) * 100 / previouslist[i].innerHTML);
     
 };
-const addCartForm = document.querySelector('form');
-const addToCart = document.querySelector('form #amount');
-const price = document.querySelector('.disc-price').innerHTML;
 
-addCartForm.addEventListener('submit', function (e) {
+
+// const addCartForm = document.querySelector('form');
+// const addToCart = document.querySelector('form #amount');
+// const price = document.querySelector('.disc-price').innerHTML;
+
+// addCartForm.addEventListener('submit', function (e) {
     
-    e.preventDefault();
+//     e.preventDefault();
 
-    const quantity = addToCart.value;
-    var new_price = quantity*price;
-    document.querySelector('.disc-price').innerHTML = new_price;
-    document.querySelector('.cart-price').innerHTML = new_price;
-    document.querySelector('.cart-price').setAttribute('style','color: green; font-weight: 900;');
-});
+//     const quantity = addToCart.value;
+//     var new_price = quantity*price;
+//     document.querySelector('.disc-price').innerHTML = new_price;
+//     document.querySelector('.cart-price').innerHTML = new_price;
+//     document.querySelector('.cart-price').setAttribute('style','color: green; font-weight: 900;');
+// });
 
 // Comment & Reply
 

@@ -1,0 +1,44 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+
+
+
+
+
+{% block showcase %}
+
+{% endblock showcase %}
+
+{% block sidebar %}
+
+{% endblock sidebar %}
+
+<body>
+    {% block content %}
+    
+    <div class="sign-up-container" style="background: #000;">
+        <div class="sign-up-card">
+            <h1 class="center">REGISTER</h1>
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+                <div class="form-container">
+                    {{register_form}}
+                    <!-- <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+                    <br /> -->
+                </div>
+    
+                <input class="sign-up-button" type="submit" value="Next">
+            </form>
+            <hr />
+            <div class="text-center">
+                <a class="small text-info" href="{% url 'login' %}">Already Have an Account!</a>
+            </div>
+            <div class="text-center">
+                <a class="small text-info" href="{% url 'showcase:index' %}">
+                    Home
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+</body>

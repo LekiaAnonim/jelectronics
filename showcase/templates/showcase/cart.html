@@ -1,19 +1,20 @@
 {% extends 'base_generic.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 
     <div class="cart-tabs">
-        <div class="cart-tab">
+        <div class="cart-tab tablinks" onclick="openCity(event, 'cart')" id="defaultOpen">
             <p>1. Shopping Cart</p>
         </div>
-        <div class="cart-tab">
+        <div class="cart-tab tablinks" onclick="openCity(event, 'welcome')">
             <p>2. Welcome</p>
         </div>
-        <div class="cart-tab">
+        <div class="cart-tab tablinks" onclick="openCity(event, 'order-summary')">
             <p>3. Order summary</p>
         </div>
-        <div class="cart-tab">
+        <div class="cart-tab tablinks" onclick="openCity(event, 'checkout')">
             <p>4. Check and order</p>
         </div>
     </div>
@@ -21,35 +22,131 @@
 
     <h1>Your Shopping Cart</h1>
     <hr>
-    {% if productinst.status == 'a' %}
-        {% for productinst in productinstance_list %}
-        
-            <div class="cart-info">
-                <img src="{{productinst.product.image.url}}" alt="{{productinst.product.model}}">
-                <div class="cart-info-detail">
-                    <h2>{{productinst.product.model}}</h2>
-                    <p>Article number: 1895{{productinst.product.id}}</p>
-                    <p>Price per unit: ₦{{productinst.product.discount_price}}</p>
-                    <div class="status">
-                        <div class="available"></div>
-                        <p>On stock, ready for delivery on the next business day </p>
-                    </div>
-                    <input type="button" value="Remove">
-                </div>
-                <div class="cart-quantity">
-                    <input type="number" name="quantity" id="quantity">
-                    <div class="refresh">
-                        <img src="{% static 'images/reset_100px.png'%}" alt="">
-                    </div>
-                </div>
-                ₦<p class="total-price">{{productinst.product.discount_price}}</p>
-            </div>
-        {% endfor %}
-    {% else %}
-    <p>There are no products in cart.</p>
-    {% endif %}
-    
-    
+    <div class="cart-section tabcontent" id="cart">
 
+        {% if request.user.is_authenticated %}
+        {% regroup productinstance_list by product as product_list %}
+        
+        {% for product in product_list %}
+        <div>
+        
+            <div>
+                {% for productinst in product.list|slice:":1" %}
+                {% if productinst.status == 'r' %}
+                <div class="cart-container">
+                    <div class="cart-info">
+                        <img src="{{productinst.product.image.url}}" alt="{{productinst.product.model}}">
+                        <div class="cart-info-detail">
+                            <h2>{{productinst.product.model}}</h2>
+                            <p>Price per unit: ${{productinst.product.discount_price}}</p>
+                            <p>Total unit: {{amount_in_cart}}</p>
+        
+                        </div>
+                        <div class="cart-quantity">
+                            <a href="{% url 'showcase:product-cart-update' productinst.product.id %}"><input
+                                    class="remove-from-cart-btn" type="submit" value="Remove"></a>
+                            <!-- <input type="submit" value="Remove"> -->
+                        </div>
+                    </div>
+                </div>
+        
+                {% else %}
+                <p>There are no products in cart.</p>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <a href="{% url 'showcase:register'%}" style="color: #0096FF; text-decoration: underline;">Please signup or login </a>
+        {% endif %}
+        
+        
+    </div>
+
+    <div class="cart-section tabcontent" id="welcome">
+        <h1>Personal Details & Billing Address</h1>
+        {% if request.user.is_authenticated %}
+        <div>
+            <p>Your registration personal information and address will be used as your billing info. If you wish to use a different Billing address, click on the Update Billing Info.</p>
+            <a href="{% url 'showcase:billing-info' user.id %}" style="color: #0096FF; text-decoration: underline;">Update Billing Info</a>
+        </div>
+        {% else %}
+        <a href="{% url 'showcase:register'%}" style="color: #0096FF; text-decoration: underline;">Please signup or login </a>
+        {% endif %}
+    </div>
+
+    <div class="cart-section tabcontent" id="order-summary">
+        <div class="order-summary-card">
+            
+            {% if request.user.is_authenticated %}
+
+            <h2>Order Summary</h2>
+            <div class="order-summary-billing-info">
+                {% if billing_info %}
+                {% for info in billing_info %}
+                    <p>Customer Name: <span>{{info.first_name}} {{info.last_name}}</span></p>
+                    <p>Address: <address><span>{{info.address_line_1}}, {{info.address_line_2}} </span></address></p>
+                    <p>
+                    <address><span> {{info.city}}, {{info.state}}.</span></address>
+                    </p>
+                    <p>Phone number: <span><a href="tel:{{info.phone_number}}">{{info.phone_number}}</a></span></p>
+                {% endfor %}
+
+                {% endif %}
+            </div>
+            {% regroup productinstance_list by product as product_list %}
+            
+            <div class="order-summary-table">
+                <table>
+                    <colgroup>
+                        <col span="1">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Unit</th>
+                            <th>Unit Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in product_list %}
+                        <div>
+                            <div>
+                                {% for productinst in product.list|slice:":1" %}
+                                {% if productinst.status == 'r' %}
+                                    <tr>
+                                        <td>{{productinst.product.model}}</td>
+                                        <td>{{amount_in_cart}}</td>
+                                        <td>${{productinst.product.discount_price}}</td>
+                                    </tr>
+                                {% else %}
+                                <p>There are no products in cart.</p>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            <tfoot>
+                                <tr>
+                                    <th rowspan="2">Grand Total</th>
+                                    <td>${{total_price}}</td>
+                                </tr>   
+                            </tfoot>
+                            
+                        </div>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <a href="{% url 'showcase:register'%}" style="color: #0096FF; text-decoration: underline;">Please signup or login </a>
+            {% endif %}
+        </div>
+    
+    </div>
+
+    <div class="cart-section tabcontent" id="checkout">
+        
+    
+    </div>
 
 {% endblock content %}

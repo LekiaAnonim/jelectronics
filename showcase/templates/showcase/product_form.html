@@ -1,0 +1,28 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block showcase %}
+
+{% endblock showcase %}
+
+{% block content %}
+<div class="cart-section">
+<div class="cart-container" style="margin-top: 200px;">
+    <h6>Enter the quantity to remove</h6>
+    <div class="cart-quantity">
+        <form method="POST" action="" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}
+            </table>
+            <input class="remove-from-cart-btn" type="submit" value="Remove">
+        </form>
+        <!-- <input type="submit" value="Remove"> -->
+    </div>
+
+</div>
+</div>
+
+
+{% endblock content %}

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 import os
 
@@ -39,16 +40,29 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'showcase.apps.ShowcaseConfig',
-    'crispy_forms',
-    'ckeditor',
-    'ckeditor_uploader',
+    # 'django.contrib.gis',
+    # 'world',
+    'smart_selects',
+    'cities_light',
+    'rosetta',
+    'parler',
+    # 'crispy_forms',
+    # 'ckeditor',
+    # 'ckeditor_uploader',
 ]
+
+# JQUERY_URL = True
+USE_DJANGO_JQUERY = True
+
+# CITIES_COUNTRY_MODEL = 'showcase.PersonalDetails'
+# CITIES_CITY_MODEL = 'showcase.PersonalDetails'
 
 SESSION_SAVE_EVERY_REQUEST = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -57,6 +71,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'jelectronics.urls'
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/',
+]
+
+# LOCALE_PATHS = (BASE_DIR + 'locale/', )
+
 
 TEMPLATES = [
     {
@@ -110,14 +131,38 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('fr', _('French')),
+    ('es', _('Spanish')),
+    ('it', _('Italian')),
+    ('nl', _('Dutch')),
+)
+
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'en', },  # English
+        {'code': 'fr', },  # French
+        {'code': 'es',},  # Spanish
+        {'code': 'it', }, # Italian
+        {'code': 'nl', }, # Dutch
+    ),
+    'default': {
+        'fallbacks': ['en'],
+        'hide_untranslated': False,
+    }
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

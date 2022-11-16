@@ -1,41 +1,57 @@
 {% extends 'base_generic.html' %}
 {% load static %}
+{% load i18n %}
 
+{% block showcase %}
+
+{% endblock showcase %}
 {% block content %}
 
-<div class="products-container">
-    {% for product in products %}
-    <div class="product-container">
-        <div class="product-img-container"><img src="{{ product.image.url }}" alt="product">
-        </div>
-        <!-- <div class="save">
-            <p class="percent">15</p>%
-            <h5>SAVE</h5>
-        </div> -->
-        <div class="product-info">
-            <!-- <p class="product-vendor">{{product.vendor}}<sup>&reg;</sup></p> -->
-            <h3 class="product-title"><a href="{% url 'showcase:product_detail' product.id %}">{{product.model}}</a>
-            </h3>
-            <div class="previous-price">
-                <p>Previous price: $<strike> {{product.price}}</strike></p>
+<div class="products-list-container">
+    <h1>All Products</h1>
+    <div class="products-container">
+        {% for product in products %}
+        <a href="{% url 'showcase:product_detail' product.id %}"><div class="product-container">
+            <div class="product-img-container"><img src="{{ product.image.url }}" alt="product">
             </div>
-            <div class="cart-price">
-                <div class="cart">
-                    <img src="{% static 'images/shopping_cart_48px.png' %}" alt="cart">
+            <div class="product-info">
+                <h3 class="product-title"><a href="{% url 'showcase:product_detail' product.id %}">{{product.model}}</a>
+                </h3>
+                <div class="previous-price">
+                    <p>Previous price: $<strike> {{product.price}}</strike></p>
                 </div>
-                <div class="price">
-                    <span>$</span>
-                    <p> {{product.discount_price}} </p>
+                <div class="cart-price">
+                    <div class="cart">
+                        <img src="{% static 'images/shopping_cart_48px.png' %}" alt="cart">
+                    </div>
+                    <div class="price">
+                        <span>$</span>
+                        <p> {{product.discount_price}} </p>
+                    </div>
                 </div>
             </div>
-            <!-- <div class="product-description">
-                                <p> {{product.description}} </p>
-                            </div> -->
-        </div>
-        <!-- <p class="card-product-category">#{{product.category}}</p> -->
+        </div></a>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 
+
 {% endblock content %}
+{% block pagination %}
+{% if is_paginated %}
+<div class="pagination">
+    <span class="page-links">
+        {% if page_obj.has_previous %}
+        <a class="previous" href="{{ request.path }}?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        <span class="page-current">
+            {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+        {% if page_obj.has_next %}
+        <a class="next" href="{{ request.path }}?page={{ page_obj.next_page_number }}">Next </a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+{% endblock %}
 

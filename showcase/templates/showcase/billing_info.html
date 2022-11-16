@@ -1,0 +1,27 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<hr>
+<div>
+    <h1>Update Your Billing Info</h1>
+    <hr>
+    <div class="sign-up-container" style="margin-top: 0;">
+        <div class="sign-up-card">
+            <form action="" method="post" enctype="multipart/form-data" novalidate>
+                {% csrf_token %}
+                <div class="form-container">
+                    {{ form.media.js }}
+                    {{form.as_table}}
+                </div>
+    
+                <input class="sign-up-button" type="submit" value="Submit">
+            </form>
+            <hr/>
+    
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
