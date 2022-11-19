@@ -39,7 +39,7 @@
                         <div class="cart-info-detail">
                             <h2>{{productinst.product.model}}</h2>
                             <p>Price per unit: ${{productinst.product.discount_price}}</p>
-                            <p>Total unit: {{amount_in_cart}}</p>
+                            <p>Total unit: {{product.list|length}}</p>
         
                         </div>
                         <div class="cart-quantity">
@@ -117,7 +117,9 @@
                                 {% if productinst.status == 'r' %}
                                     <tr>
                                         <td>{{productinst.product.model}}</td>
-                                        <td>{{amount_in_cart}}</td>
+                                        
+                                        <td>{{product.list|length}}</td>
+                                        
                                         <td>${{productinst.product.discount_price}}</td>
                                     </tr>
                                 {% else %}

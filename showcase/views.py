@@ -39,7 +39,7 @@ def index(request):
     request.session['num_visits'] = num_visits + 1
 
     productinstance_list = ProductInstance.objects.filter(
-        status__exact='r', buyer=request.user.id).order_by('purchase_date')
+        status__exact='r', buyer_id=request.user.id).order_by('purchase_date')
 
     amount_in_cart = productinstance_list.count()
     total_price = 0
@@ -141,10 +141,10 @@ class ProductDetailView(generic.DetailView, generic.edit.ProcessFormView):
             addtocart_form.save()
 
             for i in range(amt):
-                product_instance_update[i].status = 'r'
-                product_instance_update[i].buyer = self.request.user
 
-                # print(product_instance_update[i])
+                product_instance_update[i].status = 'r'
+                product_instance_update[i].buyer = request.user
+                print(product_instance_update[i])
                 product_instance_update[i].save()
 
             ProductInstance.objects.bulk_update(
@@ -162,7 +162,7 @@ class ProductDetailView(generic.DetailView, generic.edit.ProcessFormView):
         addtocart_form = AddToCart()
         product = get_object_or_404(Product, pk=self.kwargs.get('pk'))
 
-        num_instances_available = ProductInstance.objects.filter(
+        num_instances_available = ProductInstance.objects.filter(product=product,
             status__exact='a').count()
 
         productinstance_list = ProductInstance.objects.filter(
@@ -315,7 +315,7 @@ class Cart(generic.ListView):
 
     def get(self, request, *args, **kwargs):
         self.context = super().get(request, **kwargs)
-        # product = get_object_or_404(Product, pk=self.kwargs.get('pk'))
+        # productinstance = get_object_or_404(Product, pk=self.kwargs.get('pk'))
         addtocart_form = AddToCart()
         products = Product.objects.all()
         productinstance_list = ProductInstance.objects.filter(
@@ -323,6 +323,7 @@ class Cart(generic.ListView):
 
         billing_info = PersonalDetails.objects.filter(
             buyer=request.user)
+
 
         amount_in_cart = productinstance_list.count()
         total_price = 0

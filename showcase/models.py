@@ -25,12 +25,13 @@ class PersonalDetails(TranslatableModel):
         address_line_2=models.CharField(
             _('address_line_2'), max_length=255, null=True, blank=True),
 
-        country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True),
-        state = ChainedForeignKey(Region, chained_field="country", chained_model_field="country"),
+        
         city = models.CharField(_('city'), max_length=255, null=True, blank=True),
-        zip_code = models.CharField(_('zip_code'), max_length=255, null=True),
+        zip_code = models.CharField(_('zip_code'), max_length=255, null=True)
     )
-    
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True)
+    state = ChainedForeignKey(
+        Region, chained_field="country", chained_model_field="country", null=True)
 
     # class Meta:
     #     ordering = ['city', 'state', 'first_name']
@@ -83,7 +84,7 @@ class Product(TranslatableModel):
         price=models.FloatField(_('price'), null=True),
         discount_price=models.FloatField(
           null=True, blank=True),
-        description=models.TextField(_('description'), null=True, blank=True),
+        description=models.TextField(_('description'), null=True, blank=True)
         
     )
     quantity_in_cart=models.IntegerField(
@@ -112,20 +113,28 @@ class Product(TranslatableModel):
 
 class ProductInstance(TranslatableModel):
     """This model is for a specific product that can be sold from the shop"""
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4,
-                          help_text='Unique ID for this particular product in the shop')
-    product = models.ForeignKey(Product, on_delete=models.RESTRICT, null=True)
-    purchase_date = models.DateField(null=True, auto_now=True, blank=True)
+
+    translations = TranslatedFields(
+        id=models.UUIDField(primary_key=True, default=uuid.uuid4,
+                            help_text='Unique ID for this particular product in the shop')
+
+    )
+    
     SALE_STATUS = (
         ('a', 'Available'),
         ('m', 'Maintenance'),
         ('s', 'Sold'),
-        ('r', 'Reserved'),
+        ('r', 'Reserved')
     )
-    status=models.CharField(_('status'), choices=SALE_STATUS, blank=True,
-                                default='a', max_length=1, help_text='Product availability')
-    buyer=models.OneToOneField(
-            User, on_delete=models.SET_NULL, null=True, blank=True)
+    status = models.CharField(choices=SALE_STATUS, blank=True,
+                              default='a', max_length=1, help_text='Product availability')
+    purchase_date = models.DateField(null=True, auto_now=True, blank=True)
+    buyer = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, blank=True)
+
+    product = models.ForeignKey(
+        Product, on_delete=models.RESTRICT, null=True)
+    
+    
     
 
     class Meta:

@@ -71,7 +71,7 @@
                 <div class="available"></div>
                 <p>{% trans "On stock, ready for delivery on the next business day" %}</p>
             </div>
-            <p class="amount-stock">Amount in stock: {{product.productinstance_set.all.count}}</p>
+            <p class="amount-stock">Amount in stock: {{num_instances_available}}</p>
             <hr>
             <div class="amount">
                 <h3>Amount</h3>

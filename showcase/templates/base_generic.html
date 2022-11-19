@@ -24,9 +24,21 @@
             <div class="navigation-menu">
                 <div class="nav-status-container">
                     <div class="container1">
+                        <div id="google_translate_element"></div>
+                        
+                        <script type="text/javascript">
+                            function googleTranslateElementInit() {
+                                new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+                            }
+                        </script>
+                        
+                        <script type="text/javascript"
+                            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js" async="false"></script> -->
+                        <script type="module" src="/src/main.js"></script>
                         <div class="nav-status-element languages">
-                            <img src="{% static  'images/translation_52px.png' %}" alt="bag">
-                            <p class="sel-languages">Select language</p>
+                            <img class="sel-languages" src="{% static  'images/translation_52px.png' %}" alt="bag">
+                            <!-- <p class="sel-languages">Select language</p> -->
                             {% get_current_language as CURRENT_LANGUAGE %}
                             {% get_available_languages as AVAILABLE_LANGUAGES %}
                             {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}

@@ -1550,6 +1550,13 @@ td {
   color: #ff0062;
 }
 
+#google_translate_element{
+  margin-right: 20px;
+}
+#google_translate_element img {
+  display: none;
+}
+
 
 /* Cart Section */
 .cart-section{
