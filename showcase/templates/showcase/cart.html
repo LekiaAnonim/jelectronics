@@ -127,16 +127,17 @@
                                 {% endif %}
                                 {% endfor %}
                             </div>
-                            <tfoot>
-                                <tr>
-                                    <th rowspan="2">Grand Total</th>
-                                    <td>${{total_price}}</td>
-                                </tr>   
-                            </tfoot>
+                            
                             
                         </div>
                         {% endfor %}
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th rowspan="2">Grand Total</th>
+                            <td>${{total_price}}</td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
             {% else %}

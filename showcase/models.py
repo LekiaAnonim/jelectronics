@@ -14,25 +14,21 @@ from parler.models import TranslatableModel, TranslatedFields
 class PersonalDetails(TranslatableModel):
     buyer = models.OneToOneField(
         User, on_delete=models.CASCADE, null=True)
-    translations = TranslatedFields(
-        
-        first_name=models.CharField(_('first_name'), max_length=255, null=True),
-        last_name=models.CharField(_('last_name'), max_length=255, null=True),
-        phone_number=models.CharField(
-            _('phone_number'), max_length=255, null=True),
-        address_line_1=models.CharField(
-            _('address_line_1'), max_length=255, null=True),
-        address_line_2=models.CharField(
-            _('address_line_2'), max_length=255, null=True, blank=True),
-
-        
-        city = models.CharField(_('city'), max_length=255, null=True, blank=True),
-        zip_code = models.CharField(_('zip_code'), max_length=255, null=True)
-    )
+    first_name=models.CharField(max_length=255, null=True)
+    last_name=models.CharField(max_length=255, null=True)
+    
+    phone_number=models.CharField(max_length=255, null=True)
+    address_line_1=models.CharField(max_length=255, null=True)
+    address_line_2=models.CharField(max_length=255, null=True, blank=True)
+    city = models.CharField(_('city'), max_length=255, null=True, blank=True)
+    zip_code = models.CharField(max_length=255, null=True)
     country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True)
     state = ChainedForeignKey(
         Region, chained_field="country", chained_model_field="country", null=True)
 
+    translations = TranslatedFields(
+        add_to_email_list=models.BooleanField(null=True),
+    )
     # class Meta:
     #     ordering = ['city', 'state', 'first_name']
 

@@ -144,7 +144,6 @@ class ProductDetailView(generic.DetailView, generic.edit.ProcessFormView):
 
                 product_instance_update[i].status = 'r'
                 product_instance_update[i].buyer = request.user
-                print(product_instance_update[i])
                 product_instance_update[i].save()
 
             ProductInstance.objects.bulk_update(
@@ -280,9 +279,9 @@ class ProductUpdate(UpdateView):
     template_name = 'showcase/product_form.html'
 
     def form_valid(self, form):
-
+        product = get_object_or_404(Product, pk=self.kwargs.get('pk'))
         productinstance = ProductInstance.objects.filter(
-            status__exact='r')
+            status__exact='r', product=product)
         products_quantity = []
         for instance in productinstance:
             products_quantity.append(instance.product.quantity_in_cart)
@@ -297,7 +296,7 @@ class ProductUpdate(UpdateView):
                 productinstance[j].status = 'a'
                 break
 
-                productinstance[j].buyer = self.request.user
+                productinstance[j].buyer = request.user
                 productinstance[j].save()
 
         ProductInstance.objects.bulk_update(
@@ -341,19 +340,6 @@ class Cart(generic.ListView):
         }
         return render(request, self.template_name, self.context)
 
-    # def html_to_pdf_view(request):
-    #     html_string = render_to_string('showcase/pdf_template.html')
-
-    #     html = HTML(string=html_string)
-    #     html.write_pdf(target='/tmp/mypdf.pdf')
-
-    #     fs = FileSystemStorage('/tmp')
-    #     with fs.open('mypdf.pdf') as pdf:
-    #         response = HttpResponse(pdf, content_type='application/pdf')
-    #         response['Content-Disposition'] = 'attachment; filename="mypdf.pdf"'
-    #         return response
-
-    #     return response
 
 
 class PersonalDetailsUpdate(UpdateView):
@@ -421,7 +407,7 @@ class EnrolCustomerCreate(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('login')
+        return reverse('showcase:index')
 
 
 class UserRegisterView(View):

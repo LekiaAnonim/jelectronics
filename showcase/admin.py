@@ -64,6 +64,6 @@ admin.site.register(PersonalDetails, TranslatableAdmin)
 # @admin.register(PersonalDetails)
 class PersonalDetailsAdmin(admin.ModelAdmin):
     list_display = ('buyer', 'first_name', 'last_name', 'phone_number',
-                    'address_line_1', 'address_line_2', 'country', 'state', 'city', 'zip_code')
+                    'address_line_1', 'address_line_2', 'country', 'state', 'city', 'zip_code', 'add_to_email_list')
     fields = [('buyer', 'first_name', 'last_name'), 'phone_number',
-              ('address_line_1', 'address_line_2'), ('country', 'state', 'city', 'zip_code')]
+              ('address_line_1', 'address_line_2'), ('country', 'state', 'city', 'zip_code', 'add_to_email_list')]
