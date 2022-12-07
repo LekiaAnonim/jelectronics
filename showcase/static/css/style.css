@@ -1,12 +1,14 @@
 body {
-  background-image: url("pexels-joão-jesus-925743.jpg");
+  /* background-image: url("pexels-joão-jesus-925743.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
+  background: #e5ebf0;
   font-size: 16px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   overflow-x: hidden;
   padding: 0;
   width: 100%;
+  margin: 0;
 }
 
 .page-container {
@@ -926,6 +928,7 @@ h3 {
   /* border-top: solid #fff; */
   padding-bottom: 3.125rem;
   overflow-x: hidden;
+  background: rgba(0, 0, 0);
   /* padding-left: 10px; */
 }
 
@@ -941,7 +944,7 @@ h3 {
   flex-wrap: wrap;
   /* margin-top: 50px; */
   border-top: solid #fff;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0);
   padding: 20px;
 }
 
