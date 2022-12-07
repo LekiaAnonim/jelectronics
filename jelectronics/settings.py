@@ -117,12 +117,12 @@ DATABASES = {
     "default": dj_database_url.config(default='postgresql://postgres:6vRQx2lL6VNLqTj0BXVj@containers-us-west-154.railway.app:7135/railway', conn_max_age=1800),
 }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 cloudinary.config(
