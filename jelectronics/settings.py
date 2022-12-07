@@ -13,6 +13,16 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 import os
+import dj_database_url
+import environ
+import sys
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,12 +32,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 SECRET_KEY = 'django-insecure-dda(b(hq!#jlc%$)#$73qqq($#$07nd1yzkcrmo0tj#0ixa(6v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bank-production.up.railway.app',
+                 '127.0.0.1', '127.0.0.1:8000', 'skypremium.org']
 
 
 # Application definition
@@ -102,11 +114,43 @@ WSGI_APPLICATION = 'jelectronics.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
+    "default": dj_database_url.config(default='postgresql://postgres:6vRQx2lL6VNLqTj0BXVj@containers-us-west-154.railway.app:7135/railway', conn_max_age=1800),
+}
+
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+cloudinary.config(
+    cloud_name="lekiaprosper",
+    api_key="666558139559246",
+    api_secret="msWiQ9tiGPF5oT28VwwaZz_bXSA",
+)
+
+MEDIA_URL = '/media/'
+
+
+CSRF_TRUSTED_ORIGINS = ['https://bank-production.up.railway.app', 'https://skypremium.org']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
+CSRF_USE_SESSIONS = False
+CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
+
+
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_FRAME_DENY = True
+SECURE_HSTS_SECONDS = 2592000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+SECURE_REFERRER_POLICY = 'same-origin'
 
 
 # Password validation

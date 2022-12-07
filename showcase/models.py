@@ -8,6 +8,7 @@ from cities_light.models import City
 from smart_selects.db_fields import ChainedForeignKey
 from django.utils.translation import gettext_lazy as _
 from parler.models import TranslatableModel, TranslatedFields
+from cloudinary.models import CloudinaryField
 # Create your models here.
 
 
@@ -48,9 +49,7 @@ class Category(TranslatableModel):
         max_length=250, help_text='Enter a product category (e.g TV, Fans)')
     )
 
-
-    image = models.ImageField(null=True, blank=True,
-                              upload_to='media/category_pics')
+    image = CloudinaryField('image')
 
     def __str__(self):
         """String for representing the Model object."""
@@ -91,12 +90,9 @@ class Product(TranslatableModel):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL,
                                  null=True, help_text='Select a category for this product')
     
-    image = models.ImageField(null=True, blank=True,
-                              upload_to='media/product_pics')
-    image2 = models.ImageField(null=True, blank=True,
-                               upload_to='media/product_pics')
-    image3 = models.ImageField(null=True, blank=True,
-                               upload_to='media/product_pics')
+    image = CloudinaryField('image')
+    image2 = CloudinaryField('image')
+    image3 = CloudinaryField('image')
     
 
     def __str__(self):
