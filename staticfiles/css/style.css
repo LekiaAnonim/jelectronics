@@ -197,7 +197,7 @@ a {
   color: rgb(20, 250, 20);
 }
 
-li {
+.nav-menu-list li {
   list-style: none;
   margin-left: 1.875rem;
 }
@@ -1722,6 +1722,9 @@ td {
 
   .ads {
     width: 100%;
+  }
+  .nav-menu-list li {
+    margin-left: 0.375rem;
   }
 }
 

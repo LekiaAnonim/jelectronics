@@ -38,7 +38,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # SECRET_KEY = 'django-insecure-dda(b(hq!#jlc%$)#$73qqq($#$07nd1yzkcrmo0tj#0ixa(6v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['rig-line-services.up.railway.app',
                  '127.0.0.1', '127.0.0.1:8000', '']
