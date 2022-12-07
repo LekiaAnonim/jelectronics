@@ -27,6 +27,8 @@ environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+from django.core.management.utils import get_random_secret_key
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -58,6 +60,8 @@ INSTALLED_APPS = [
     'cities_light',
     'rosetta',
     'parler',
+    'cloudinary_storage',
+    'cloudinary',
     # 'crispy_forms',
     # 'ckeditor',
     # 'ckeditor_uploader',
