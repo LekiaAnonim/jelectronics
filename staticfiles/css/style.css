@@ -484,6 +484,7 @@ h3 {
 .main-aside {
   float: left;
   max-width: 12.5rem;
+  width: 100%;
   color: rgb(255, 255, 255);
   margin-top: 10vh;
   margin-left: 0.325rem;
@@ -1728,7 +1729,7 @@ td {
     width: 100%;
   }
   .nav-menu-list li {
-    margin-left: 0.975rem;
+    margin-left: 0.575rem;
   }
 }
 
