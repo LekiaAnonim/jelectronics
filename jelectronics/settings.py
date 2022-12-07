@@ -40,8 +40,8 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['bank-production.up.railway.app',
-                 '127.0.0.1', '127.0.0.1:8000', 'skypremium.org']
+ALLOWED_HOSTS = ['rig-line-services.up.railway.app',
+                 '127.0.0.1', '127.0.0.1:8000', '']
 
 
 # Application definition
