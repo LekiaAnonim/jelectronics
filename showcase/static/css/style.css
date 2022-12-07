@@ -1720,8 +1720,8 @@ td {
 
   .main-aside {
     float: none;
-    max-width: 96%;
-    width: 95%;
+    max-width: 80%;
+    width: 75%;
     overflow-x: hidden;
   }
 
