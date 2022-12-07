@@ -133,7 +133,7 @@
     {% endblock navbar %}
 
     {% block showcase %}
-        <section class="product-showcase">
+        <div class="product-showcase">
             <div id="slider">
                 <div class="showcase-image">
                     <img class="img1" src="{% static 'images/offshore-drilling-packages-card.jpg' %}" alt="image1">
@@ -172,7 +172,7 @@
             </div>
             <!-- <div class="slider-control">
             </div>  -->
-        </section>
+        </div>
     {% endblock showcase %}
 
     {% block sidebar %}
@@ -205,24 +205,11 @@
                 </p>
             </div>
             <hr>
-            <div>
-                <h4>LEGO&reg; Education</h4>
-                <p>
-                    Want to learn more about LEGO Education classroom solutions
-                    or have any questions?
-                    <br>
-                    <br>
-                    As an official trading partner, we are here to help you.
-                    <br>
-                </p>
-                <a href="#">Learn more</a>
-            </div>
-            <hr>
         </aside>
     {% endblock sidebar %}
 
     {% block content %}
-        <section class="featured-products">
+        <div class="featured-products">
             <h1>Featured Products</h1>
             <hr>
             <div class="products-container">
@@ -254,151 +241,7 @@
             <div class="view-all">
                 <a href="{% url 'showcase:products' %}"><button>View All</button></a>
             </div>
-        </section>
-        <!-- <section class="ads">
-            <h1>LEGO&reg; Education</h1>
-            <hr>
-            <div class="top-card">
-                <div class="top-card1">
-                    <div class="top-card1-text">
-                        <h4>MINT Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Porro Lorem ipsum dolor sit.</h4>
-                        <p>LEGO<sup>&reg;</sup> Education Lorem, ipsum dolor sit amet.
-                        <br> <a href="#">Learn more &RightTriangle;</a>
-                        </p>
-                    </div>
-                    <div class="top-card1-img">
-                        <img src="{% static 'images/5848152fcef1014c0b5e4967 (1).png' %}" alt="ad image">
-                        <div class="copy-lego"><p>&copy;LEGO</p></div>
-                    </div>
-                </div>
-                <div class="top-card2">
-                    <div class="logo-red">
-                        <p>LEGO</p>
-                    </div>
-                    <div class="logo-edu">
-                        <p><span>educat</span>i<span>on</span></p>
-                    </div>
-                    <div class="logo">
-                        <img src="{% static 'images/jira_96px.png' %}" alt="logo">
-                    </div>
-                </div>
-            </div>
-            <div class="ads-card-container">
-                <div class="ads-card">
-                    <div class="edu-logo">
-                        <div class="logo-red">
-                            <p>LEGO</p>
-                        </div>
-                        <div class="logo-edu">
-                            <p><span>educat</span>i<span>on</span></p>
-                        </div>
-                    </div>
-                    <div class="ads-content">
-                        <div class="ads-desc">
-                            <div class="ads-title">
-                                <h2>LEGO<sup>&reg;</sup> Education Coding Express</h2>
-                            </div>
-                            <div class="ads-text">
-                                <h4>
-                                    Confidence in learning <br> <a href="#">Starts here &NestedGreaterGreater; </a>
-                                </h4>
-                            </div>
-                            <div class="copy-lego">
-                                <p>&copy;LEGO</p>
-                            </div>
-                        </div>
-                        <div class="ads-card-img">
-                            <img src="{% static 'images/car-cartoon2.png' %}" alt="image name">
-                        </div>
-                    </div>
-                </div>
-                <div class="ads-card">
-                    <div class="edu-logo">
-                        <div class="logo-red">
-                            <p>LEGO</p>
-                        </div>
-                        <div class="logo-edu">
-                            <p><span>educat</span>i<span>on</span></p>
-                        </div>
-                    </div>
-                    <div class="ads-content">
-                        <div class="ads-desc">
-                            <div class="ads-title">
-                                <h2>LEGO<sup>&reg;</sup> Education Coding Express</h2>
-                            </div>
-                            <div class="ads-text">
-                                <h4>
-                                    Confidence in learning <br> <a href="#">Starts here &NestedGreaterGreater;</a>
-                                </h4>
-                            </div>
-                            <div class="copy-lego">
-                                <p>&copy;LEGO</p>
-                            </div>
-                        </div>
-                        <div class="ads-card-img">
-                            <img src="{% static 'images/car-cartoon2.png' %}" alt="image name">
-                        </div>
-                    </div>
-                </div>
-                <div class="ads-card">
-                    <div class="edu-logo">
-                        <div class="logo-red">
-                            <p>LEGO</p>
-                        </div>
-                        <div class="logo-edu">
-                            <p><span>educat</span>i<span>on</span></p>
-                        </div>
-                    </div>
-                    <div class="ads-content">
-                        <div class="ads-desc">
-                            <div class="ads-title">
-                                <h2>LEGO<sup>&reg;</sup> Education Coding Express</h2>
-                            </div>
-                            <div class="ads-text">
-                                <h4>
-                                    Confidence in learning <br> <a href="#">Starts here &NestedGreaterGreater;</a>
-                                </h4>
-                            </div>
-                            <div class="copy-lego">
-                                <p>&copy;LEGO</p>
-                            </div>
-                        </div>
-                        <div class="ads-card-img">
-                            <img src="{% static 'images/car-cartoon2.png' %}" alt="image name">
-                        </div>
-                    </div>
-                </div>
-                <div class="ads-card">
-                    <div class="edu-logo">
-                        <div class="logo-red">
-                            <p>LEGO</p>
-                        </div>
-                        <div class="logo-edu">
-                            <p><span>educat</span>i<span>on</span></p>
-                        </div>
-                    </div>
-                    <div class="ads-content">
-                        <div class="ads-desc">
-                            <div class="ads-title">
-                                <h2>LEGO<sup>&reg;</sup> Education Coding Express</h2>
-                            </div>
-                            <div class="ads-text">
-                                <h4>
-                                    Confidence in learning <br> <a href="#">Starts here &NestedGreaterGreater;</a>
-                                </h4>
-                            </div>
-                            <div class="copy-lego">
-                                <p>&copy;LEGO</p>
-                            </div>
-                        </div>
-                        <div class="ads-card-img">
-                            <img src="{% static 'images/car-cartoon2.png' %}" alt="image name">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
+        </div>
     {% endblock content %}
     {% block pagination %}
     

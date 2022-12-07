@@ -38,6 +38,10 @@ a {
   z-index: 10000;
   top: 0;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .navigation-menu {
@@ -55,6 +59,7 @@ a {
   color: #fff;
   margin-top: 0;
   justify-content: space-between;
+
   height: fit-content;
 }
 .navigation .nav-status-container p {
