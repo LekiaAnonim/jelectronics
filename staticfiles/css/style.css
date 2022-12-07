@@ -1717,6 +1717,7 @@ td {
 
   .main-aside {
     float: none;
+    max-width: 100%;
     width: 100%;
     overflow-x: hidden;
   }
@@ -1729,7 +1730,7 @@ td {
     width: 100%;
   }
   .nav-menu-list li {
-    margin-left: 0.275rem;
+    margin-left: 0.175rem;
   }
 }
 
