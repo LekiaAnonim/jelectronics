@@ -138,7 +138,7 @@ cloudinary.config(
 MEDIA_URL = '/media/'
 
 
-CSRF_TRUSTED_ORIGINS = ['https://bank-production.up.railway.app', 'https://skypremium.org']
+CSRF_TRUSTED_ORIGINS = ['https://rig-line-services.up.railway.app']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
 CSRF_USE_SESSIONS = False
 CSRF_COOKIE_SECURE = True
