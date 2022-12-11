@@ -1,6 +1,16 @@
 {% extends 'base_generic.html' %}
 {% load static %}
+{% load i18n %}
 
+{% block showcase %}
+<section class="product-showcase">
+    <div id="product-detail-showcase-image">
+        {% if product.category.image %}
+        <img src="{{product.category.image.url}}" alt="">
+        {% endif %}
+    </div>
+</section>
+{% endblock showcase %}
 
 
 {% block content %}
@@ -24,12 +34,16 @@
                     <img class="prod-inst-img1" src="{{product.image.url}}" alt="product name">
                 </div>
                 <div class="product-instance-photos">
+                    {% if product.image2 %}
                     <img class="prod-inst-img2"
-                        src="{% static 'images/most_desired_by_david_dennis_d9j3dpi-fullview.jpg' %}" alt="product name">
+                        src="{{product.image2.url}}" alt="product name">
+                    {% endif %}
                 </div>
                 <div class="product-instance-photos">
-                    <img class="prod-inst-img3" src="{% static 'images/d89kaou-f9a14e37-3f1e-47d4-a183-44c52921d8dc.jpg' %}"
+                    {% if product.image3 %}
+                    <img class="prod-inst-img3" src="{{product.image3.url}}"
                         alt="product name">
+                    {% endif %}
                 </div>
             </div>
     
@@ -49,78 +63,44 @@
         <div class="product-detail-aside">
             <div class="price">
                 <p>Price:</p>
-                ₦<p class="disc-price">{{product.discount_price}}</p>
+                $<p class="disc-price">{{product.discount_price}}</p>
                 
                 <hr>
             </div>
             <div class="status">
                 <div class="available"></div>
-                <p>On stock, ready for delivery on the next business day </p>
+                <p>{% trans "On stock, ready for delivery on the next business day" %}</p>
             </div>
-            <p class="amount-stock">Amount in stock: {{product.productinstance_set.all.count}}</p>
+            <p class="amount-stock">Amount in stock: {{num_instances_available}}</p>
             <hr>
             <div class="amount">
                 <h3>Amount</h3>
-                <form action="" method="POST">
+                <p>Quantity</p>
+                <form method="POST" action="" enctype="multipart/form-data" novalidate>
                     {% csrf_token %}
-                    <!-- <div class="addtocart_quantity"> -->
-                    <input type="number" name="quantity" id="amount" value="1">
-                        <!-- {{ form.quantity }} -->
-                    <!-- </div> -->
-                    <!-- <input type="submit" value="Submit"> -->
-                    <button><img src="{% static 'images/shopping_cart_48px.png' %}" alt="">Add to cart</button>
+                    <table>
+                        {{addtocart_form.as_table}}
+                    </table>
+                    <input class="add-to-cart-btn" type="submit" value="Add to cart">
                 </form>
-
-                <!-- <input type="number" name="amount" id="amount" value="1">
-                <button type="submit"><img src="{% static 'images/shopping_cart_48px.png' %}" alt=""> Add to cart</button> -->
                 <p>All prices incl. VAT.</p>
             </div>
             <hr>
-            <div class="product-manu-info">
-                <div class="vendor-logo">
-    
-                    <p>LIGHT MY <br> <span>BRICKS</span></p>
-                </div>
-                <div class="product-info-table">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>Article number:</th>
-                                <td>189513</td>
-                            </tr>
-                            <tr>
-                                <th>Manufacturer:</th>
-                                <td>LIGHT MY BRICKS</td>
-                            </tr>
-                            <tr>
-                                <th>Manufacturer Part No:</th>
-                                <td>vespa125-10298</td>
-                            </tr>
-                            <tr>
-                                <th>EAN</th>
-                                <td>744109767937</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
     
         </div>
     </div>
     <div class="productinstance-description">
         <h2>Description</h2>
-        <p>Take a trip through the cobble streets of Tuscany on the
-            LEGO Vespa 125 10298!
-        <h3>What's in the box</h3>
-        <ul>
-            <li>7x Assorted Bit Lights</li>
-            <li>2x Assorted Expansion Boards</li>
-            <li>1x Connecting Cable</li>
-            <li>2x Assorted Bricks</li>
-            <li>1x USB Power Cable (power source not include)</li>
-        </ul>
-        </p>
+        <p>{{product.description}}</p>
     </div>
+    
 </div>
 
 {% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'js/app.js' %}"></script>
+<!-- <script src="{% static 'js/hamburger.js' %}"></script> -->
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+{% endblock scripts %}

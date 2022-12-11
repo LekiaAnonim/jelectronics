@@ -1,37 +1,48 @@
 {% extends "base_generic.html" %}
 
+{% block showcase %}
+
+{% endblock showcase %}
+{% load i18n %}
+
+{% block sidebar %}
+
+{% endblock sidebar %}
+
+
+
 {% block content %}
 
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
-
-{% if next %}
-{% if user.is_authenticated %}
-<p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-{% else %}
-<p>Please login to see this page.</p>
-{% endif %}
-{% endif %}
-
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <table>
-        <tr>
-            <td>{{ form.username.label_tag }}</td>
-            <td>{{ form.username }}</td>
-        </tr>
-        <tr>
-            <td>{{ form.password.label_tag }}</td>
-            <td>{{ form.password }}</td>
-        </tr>
-    </table>
-    <input type="submit" value="login" />
-    <input type="hidden" name="next" value="{{ next }}" />
-</form>
+<div class="sign-up-container" style="background: #000;">
+    <div class="sign-up-card">
+        {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+        {% endif %}
+        
+        {% if next %}
+        {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+            please login with an account that has access.</p>
+        {% else %}
+        <p>Please login to see this page.</p>
+        {% endif %}
+        {% endif %}
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="form-container">
+                {{ form }}
+            </div>
+            
+            <!-- <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+            <br /> -->
+            <input class="sign-up-button" type="submit" value="login" />
+            <input type="hidden" name="next" value="{{ next }}" />
+        </form>
 
 {# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+<p><a href="{% url 'password_reset' %}" style="color: #0096FF; text-decoration: underline;">Lost password?</a></p>
+    </div>
+</div>
+    
 
 {% endblock %}

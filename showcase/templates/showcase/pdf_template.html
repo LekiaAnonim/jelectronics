@@ -1,0 +1,79 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="cart-section tabcontent" id="order-summary">
+    <div class="order-summary-card">
+
+        {% if request.user.is_authenticated %}
+
+        <h2>Order Summary</h2>
+        <div class="order-summary-billing-info">
+            {% if billing_info %}
+            {% for info in billing_info %}
+            <p>Customer Name: <span>{{info.first_name}} {{info.last_name}}</span></p>
+            <p>Address:
+            <address><span>{{info.address_line_1}}, {{info.address_line_2}} </span></address>
+            </p>
+            <p>
+            <address><span> {{info.city}}, {{info.state}}.</span></address>
+            </p>
+            <p>Phone number: <span><a href="tel:{{info.phone_number}}">{{info.phone_number}}</a></span></p>
+            {% endfor %}
+
+            {% endif %}
+        </div>
+        {% regroup productinstance_list by product as product_list %}
+
+        <div class="order-summary-table">
+            <table>
+                <colgroup>
+                    <col span="1">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Unit</th>
+                        <th>Unit Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in product_list %}
+                    <div>
+                        <div>
+                            {% for productinst in product.list|slice:":1" %}
+                            {% if productinst.status == 'r' %}
+                            <tr>
+                                <td>{{productinst.product.model}}</td>
+                                <td>{{amount_in_cart}}</td>
+                                <td>${{productinst.product.discount_price}}</td>
+                            </tr>
+                            {% else %}
+                            <p>There are no products in cart.</p>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                <tfoot>
+                    <tr>
+                        <th rowspan="2">Grand Total</th>
+                        <td>${{total_price}}</td>
+                    </tr>
+                </tfoot>
+
+        </div>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    {% else %}
+    <a href="{% url 'showcase:register'%}" style="color: #0096FF; text-decoration: underline;">Please signup or login
+    </a>
+    {% endif %}
+</div>
+
+</div>
+
+
+{% endblock content %}

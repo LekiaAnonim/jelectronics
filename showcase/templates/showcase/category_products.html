@@ -1,0 +1,49 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+
+{% block showcase %}
+
+{% endblock showcase %}
+
+
+{% block content %}
+<div class="category-products-container">
+    <h1 class="title display-table-cell cell-color"><b>{{ category.name }}</b>
+    </h1>
+    
+    <section class="featured-products">
+        <div class="products-container">
+            {% for product in products %}
+            
+                <a href="{% url 'showcase:product_detail' product.id %}">
+                    <div class="product-container">
+                    <div class="product-img-container"><img src="{{ product.image.url }}" alt="product">
+                    </div>
+                    <div class="save" style="background: none;">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">{{product.model}}
+                        </h3>
+                        <div class="previous-price">
+                            <p>Previous price: $<strike> {{product.price}}</strike></p>
+                        </div>
+                        <div class="cart-price">
+                            <div class="cart">
+                                <img src="{% static 'images/shopping_cart_48px.png' %}" alt="cart">
+                            </div>
+                            <div class="price">
+                                <span>$</span>
+                                <p> {{product.discount_price}} </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            {% endfor %}
+        </div>
+    
+    </section>
+</div>
+
+{% endblock content %}
