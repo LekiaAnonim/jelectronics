@@ -41,7 +41,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 DEBUG = True
 
 ALLOWED_HOSTS = ['rig-line-services.up.railway.app',
-                 '127.0.0.1', '127.0.0.1:8000', '']
+                 '127.0.0.1', '127.0.0.1:8000', 'jetticon.com']
 
 
 # Application definition
@@ -139,7 +139,7 @@ cloudinary.config(
 MEDIA_URL = '/media/'
 
 
-CSRF_TRUSTED_ORIGINS = ['https://rig-line-services.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://rig-line-services.up.railway.app', 'https://jetticon.com']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
 CSRF_USE_SESSIONS = False
 CSRF_COOKIE_SECURE = True
