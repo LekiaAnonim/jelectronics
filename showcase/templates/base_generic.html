@@ -8,7 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    {% block title %}<title>Rig Line Services</title>{% endblock title %}
+    {% block title %}
+    <title>Rig Line Services</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %">
+    {% endblock title %}
+
     {% block styles %}
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -16,7 +20,21 @@
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" /> -->
     {% endblock styles %}
 </head>
-<script src="//code.tidio.co/hkptrtx92za1zyvotaikabz1vcuuhasu.js" async></script>
+{% block chat %}
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/639ae70edaff0e1306dcc465/1gkahd4qs';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
+{% endblock chat %}
 <body>
 
     {% block navbar %}
@@ -116,18 +134,68 @@
                     <div class="cart">
                         <div class="amount-in-cart">{{amount_in_cart}}</div>
                         <a href="{% url 'showcase:cart_products'%}"><img src="{% static 'images/shopping_cart_48px.png' %}" alt="cart"></a>
-                        ($<p>{{total_price}}</p>)
+                        <p>(${{total_price}})</p>
                     </div>
                 </div>
-                <!-- <div class="product-manufacturer-list">
-                    <div>
-                        <p>New Products | Manufacturer A-Z |</p>
+                
+                <div class="hamburger-container">
+                    <button class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </button>
+                    <div class="ham-menu">
+                        <div class="ham-nav-list">
+                            <li>
+                                <p>Products</p>
+                                <div class="nav-dropdown">
+                                    {% for category in categories %}
+                                    <a href="{% url 'showcase:category_products' category.id %}">
+                                        <div class="dropdown-name">{{category.name}}</div>
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </li>
+                            <li>
+                                <p>Vendors</p>
+                                <div class="nav-dropdown">
+                                    {% for vendor in vendors %}
+                                    <a href="{% url 'showcase:vendor_products' vendor.id %}">
+                                        <div class="dropdown-name">{{vendor.name}}</div>
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </li>
+                        </div>
+                        <div class="ham-nav-status-container">
+                            <div class="ham-container2">
+                                <div class="nav-status-element">
+                                    <img src="{% static 'images/settings_48px.png' %}" alt="bag">
+                                    <a href="{% url 'showcase:register' %}">Sign Up</a>
+                        
+                                </div>
+                                {% if request.user.is_authenticated %}
+                                <div class="ham-nav-status-element">
+                                    <a href="{% url 'logout' %}?next={{request.path}}">{{user.username}}</a>
+                                    <a href="{% url 'logout' %}?next={{request.path}}"><img src="{% static 'images/shutdown_52px.png' %}"
+                                            alt=""></a>
+                                </div>
+                        
+                                {% else %}
+                                <div class="ham-nav-status-element">
+                                    <img src="{% static 'images/customer_100px.png' %}" alt="bag">
+                                    <a href="{% url 'login'  %}?next={{request.path}}">
+                                        Login
+                                    </a>
+                                </div>
+                                {% endif %}
+                            </div>
+                        
+                        </div>
+                        
                     </div>
-                    <div class="sale">
-                        <img src="{% static 'images/discount_96px.png' %}" alt="sale">
-                        <p>Sale</p>
-                    </div>
-                </div> -->
+                    
+                </div>
             </div>
         </div>
     {% endblock navbar %}
@@ -176,36 +244,36 @@
     {% endblock showcase %}
 
     {% block sidebar %}
-        <aside class="main-aside">
-            <div class="main-categories">
-                <h4>Main Categories</h4>
-                {% for category in categories %}
-                    <li>
-                        <a href="{% url 'showcase:category_products' category.id %}">{{category.name}}</a>
-                    </li>
-                {% endfor %}
-                
-            </div>
-            <hr>
-            <!-- <div class="free-shipping-info">
-                <h4>Free Shipping</h4>
-                <p>
-                    We offer you a Free Shipping option to 25 countries
-                    , if your order value is over $15,000.00. For more information please check:
-                </p>
-                <br>
-                <a href="#">Free Shipping information and Conditions</a>
-            </div>
-            <hr>
-            <div class="pickup">
-                <h4>Pickup</h4>
-                <p>
-                    You can pickup your goods, after you placed an order and
-                    received a ready-for-pickup notification.
-                </p>
-            </div>
-            <hr> -->
-        </aside>
+    <aside class="main-aside">
+        <div class="main-categories">
+            <h4>Main Categories</h4>
+            {% for category in categories %}
+            <li>
+                <a href="{% url 'showcase:category_products' category.id %}">{{category.name}}</a>
+            </li>
+            {% endfor %}
+    
+        </div>
+        <hr>
+        <div class="free-shipping-info">
+            <h4>Free Shipping</h4>
+            <p>
+                We offer you a Free Shipping option to 25 countries
+                , if your order value is over $15,000.00. For more information please check:
+            </p>
+            <br>
+            <a href="#">Free Shipping information and Conditions</a>
+        </div>
+        <hr>
+        <div class="pickup">
+            <h4>Pickup</h4>
+            <p>
+                You can pickup your goods, after you placed an order and
+                received a ready-for-pickup notification.
+            </p>
+        </div>
+        <hr>
+    </aside>
     {% endblock sidebar %}
 
     {% block content %}
@@ -246,6 +314,7 @@
     {% block pagination %}
     
     {% endblock %}
+        
     {% block footer %}
         <footer>
             <div class="footer">

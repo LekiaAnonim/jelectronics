@@ -276,13 +276,27 @@ a {
 
 .cart p{
   color: rgb(218, 214, 214);
+  font-size: 11px;
 }
 
 .cart img {
   width: 1.5625rem;
   height: 1.5625rem;
 }
-
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+}
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #ffffff;
+}
 .product-manufacturer-list {
   width: 100%;
   height: 1.875rem;
@@ -542,11 +556,11 @@ h3 {
 .product-container {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 10px;
   background: #fff;
   /* align-items: center; */
   width: 15.625rem;
-  height: 25.25rem;
+  height: fit-content;
   /* border: 0.125rem solid rgb(223, 217, 217); */
   border-radius: 0.3125rem;
   box-shadow: 0 0 6px 0px rgb(0 0 0 / 25%);
@@ -555,12 +569,11 @@ h3 {
 }
 
 .product-img-container {
-  width: 100%;
-  height: 12.5rem;
+  max-width: 100%;
+  max-height: 30%;
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 0;
 }
 
@@ -607,7 +620,7 @@ h3 {
 }
 
 .product-info {
-  margin: 2.8125rem 0.3125rem 0.3125rem 0.3125rem;
+  margin: 2.8125rem 0.3125rem 0.1125rem 0.3125rem;
 }
 
 .product-container .product-vendor {
@@ -1697,6 +1710,13 @@ td {
   display: none;
 }
 
+.hamburger-container{
+  display: none;
+  background-color: #000000;
+}
+.ham-menu {
+  display: none;
+}
 
 /* Go from zero to full opacity */
 @keyframes fadeEffect {
@@ -1738,6 +1758,107 @@ td {
   .search{
     display: none;
   }
+  .logo img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .nav-list p {
+    font-size: 11px;
+  }
+  .nav-menu-list a {
+    font-size: 0.8em;
+  }
+  .cart {
+    font-size: 0.9rem;
+  }
+  .hamburger-container {
+    display: block;
+  }
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+  .display-menu{
+    display: block;
+  }
+  .hamburger.display-menu .bar:nth-child(2) {
+    opacity: 0;
+
+  }
+
+  .hamburger .display-menu .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger .display-menu .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  .nav-status-container{
+    display: none;
+  }
+  .container2{
+    display: none;
+  }
+  .nav-list{
+    display: none;
+  }
+  .showcase-description h2 {
+    font-size: 1.5em;
+  }
+
+  .showcase-description h3 {
+    font-size: 0.7em;
+  }
+  .ham-menu{
+    position: fixed;
+    top: 70px;
+    background: #000;
+    padding-left: 5px;
+    padding-bottom: 10px;
+  }
+  .navigation .nav-status-container{
+    display: none;
+  }
+  .ham-nav-status-element{
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+  }
+  .ham-nav-status-element img{
+    width: 15px;
+    height: 15px;
+  }
+  .ham-nav-status-element a{
+    color: white;
+  }
+  .ham-nav-list p{
+    color: #fff;
+  }
+    .show-desc {
+      padding-bottom: 5%;
+    }
+    .cart{
+      margin-top: 20px;
+    }
+    .main-aside{
+      display: none;
+    }
+    .nav-dropdown {
+      display: block;
+      position: relative;
+      width: fit-content;
+      height: fit-content;
+      padding: 0px;
+      background-color: rgba(0, 0, 0, 0.788);
+    }
+    .nav-dropdown a {
+      color: #b5b9bd;
+      font-size: ;
+    }
+    .nav-dropdown .dropdown-name {
+      margin-bottom: 5px;
+      padding: 5px 6px;
+    }
 }
 
 .category-products-container{
