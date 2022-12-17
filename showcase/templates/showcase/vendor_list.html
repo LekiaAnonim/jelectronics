@@ -1,0 +1,43 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block showcase %}
+
+{% endblock showcase %}
+{% block content %}
+
+<div class="products-list-container">
+    <h1>All Vendors</h1>
+    <div class="products-container">
+        {% for vendor in vendors %}
+        <a href="{% url 'showcase:vendor_products' vendor.id %}"><div class="product-container" style="width: 100%; padding:0px; display:flex; justify-content:center; align-items:center;">
+            <div class="product-info" style="margin: 0; ">
+                <h3 class="product-title"><a href="{% url 'showcase:vendor_products' vendor.id %}">{{vendor.name}}</a>
+                </h3>
+            </div>
+        </div></a>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock content %}
+{% block pagination %}
+{% if is_paginated %}
+<div class="pagination">
+    <span class="page-links">
+        {% if page_obj.has_previous %}
+        <a class="previous" href="{{ request.path }}?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        <span class="page-current">
+            {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+        {% if page_obj.has_next %}
+        <a class="next" href="{{ request.path }}?page={{ page_obj.next_page_number }}">Next </a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+{% endblock %}
+

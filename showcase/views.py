@@ -257,6 +257,29 @@ class CategoryDetailView(generic.DetailView):
 class VendorListView(generic.ListView):
     model = Vendor
     paginate_by = 4
+    context_object_name = 'vendors'
+    template_name = 'showcase/vendor_list.html'
+    paginate_by = 9
+
+    def get_context_data(self, **kwargs):
+        """override get_context_data() in order to pass additional
+        context variables to the template """
+
+        productinstance_list = ProductInstance.objects.filter(
+            status__exact='r', buyer=self.request.user.id).order_by('purchase_date')
+
+        amount_in_cart = productinstance_list.count()
+        total_price = 0
+        for i in range(len(productinstance_list)):
+            total_price += productinstance_list[i].product.discount_price
+
+        # Call the base implementation first to get the context
+        context = super(VendorListView, self).get_context_data(**kwargs)
+        # Create any data and add it to the context
+        context['categories'] = Category.objects.all()
+        context['amount_in_cart'] = amount_in_cart
+        context['total_price'] = total_price
+        return context
 
 
 class VendorDetailView(generic.DetailView):
