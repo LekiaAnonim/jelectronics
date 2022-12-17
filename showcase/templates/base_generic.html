@@ -206,10 +206,10 @@
                 <div class="showcase-image">
                     <img class="img1" src="{% static 'images/offshore-drilling-packages-card.jpg' %}" alt="image1">
                     <div class="showcase-description">
-                        <div class="show-desc">
+                        <div class="show-desc show-desc1">
                             <h2>HUGE setting force, super low shock force</h2>
                             <h3>The Sure Set from Wellbore Solutions boasts no need for oil, a 10-min redress time, a super compact design</h3>
-                            <!-- <input type="button" value="BUY NOW"> -->
+                            <a href="{% url 'showcase:products' %}"><input type="button" value="BUY NOW"></a>
                         </div>
                         
                     </div>
@@ -217,11 +217,11 @@
                 <div class="showcase-image">
                     <img class="img1" src="{% static 'images/offshoredrillingworker.jpg' %}" alt="image2">
                     <div class="showcase-description">
-                        <div class="show-desc">
+                        <div class="show-desc show-desc2">
                             <h2>Surface chokes: a new category of products</h2>
                             <h3>Pressure and flow control across a wide range of applications. <br>Match the trim configuration to YOUR field
                                 conditions.</h3>
-                            <!-- <input type="button" value="BUY NOW"> -->
+                            <a href="{% url 'showcase:products' %}"><input type="button" value="BUY NOW"></a>
                         </div>
                         
                     </div>
@@ -229,12 +229,12 @@
                 <div class="showcase-image">
                     <img class="img1" src="{% static 'images/depositphotos_115801522-stock-photo-operator-recording-operation-of-oil.jpg' %}" alt="image1">
                     <div class="showcase-description">
-                        <div class="show-desc">
+                        <div class="show-desc show-desc3">
                             <h2>Introducing the renowned XQMS BlueSteel Fluid End</h2>
                         <h3>Up to 12% longer life than leading competitors and now available exclusively on Oilfield Marketplace!</h3>
                         </div>
                         
-                        <!-- <input type="button" value="BUY NOW"> -->
+                        <!-- <a href="{% url 'showcase:products' %}"><input type="button" value="BUY NOW"></a> -->
                     </div>
                 </div>
             </div>
@@ -278,6 +278,26 @@
 
     {% block content %}
         <div class="featured-products">
+            <div class="product-vendor-container">
+                <div class="product-vendor-card">
+                    <h3 class="product-vendor-card-title">Welcome to Rig Equipment Line.</h3>
+                    <p class="product-vendor-card-brief">A leading oil and gas marketplace.</p>
+                    <p class="product-vendor-card-cta">Get started by signing up for an account now.</p>
+                    <a href="{% url 'showcase:register' %}"><input type="button" value="Sign up now"></a>
+                </div>
+                <a href="{% url 'showcase:products' %}"><div class="product-vendor-card">
+                    <h3 class="product-vendor-card-title">Products</h3>
+                    <div class="divide"></div>
+                    <p class="product-vendor-card-cta">Browse our product catalog to find out what you are looking for.</p>
+                </div></a>
+                <a href="{% url 'showcase:vendors' %}">
+                    <div class="product-vendor-card">
+                        <h3 class="product-vendor-card-title">Vendors</h3>
+                        <div class="divide"></div>
+                        <p class="product-vendor-card-cta">Meet our top rate vendors and brands.</p>
+                    </div>
+                </a>
+            </div>
             <h1>Featured Products</h1>
             <hr>
             <div class="products-container">
