@@ -204,7 +204,7 @@
         <div class="product-showcase">
             <div id="slider">
                 <div class="showcase-image">
-                    <img class="img1" src="{% static 'images/offshore-drilling-packages-card.jpg' %}" alt="image1">
+                    <img class="img1" src="{% static 'images/ksenia-kudelkina-o5_LYQ44gsM-unsplash.jpg' %}" alt="image1">
                     <div class="showcase-description">
                         <div class="show-desc show-desc1">
                             <h2>HUGE setting force, super low shock force</h2>
@@ -215,7 +215,7 @@
                     </div>
                 </div>
                 <div class="showcase-image">
-                    <img class="img1" src="{% static 'images/offshoredrillingworker.jpg' %}" alt="image2">
+                    <img class="img1" src="{% static 'images/kartikay-sharma-nEIOl0UXMDQ-unsplash.jpg' %}" alt="image2">
                     <div class="showcase-description">
                         <div class="show-desc show-desc2">
                             <h2>Surface chokes: a new category of products</h2>
@@ -227,14 +227,15 @@
                     </div>
                 </div>
                 <div class="showcase-image">
-                    <img class="img1" src="{% static 'images/depositphotos_115801522-stock-photo-operator-recording-operation-of-oil.jpg' %}" alt="image1">
+                    <img class="img1" src="{% static 'images/offshoredrillingworker.jpg' %}" alt="image1">
                     <div class="showcase-description">
                         <div class="show-desc show-desc3">
                             <h2>Introducing the renowned XQMS BlueSteel Fluid End</h2>
                         <h3>Up to 12% longer life than leading competitors and now available exclusively on Oilfield Marketplace!</h3>
+                        <a href="{% url 'showcase:products' %}"><input type="button" value="BUY NOW"></a>
                         </div>
                         
-                        <!-- <a href="{% url 'showcase:products' %}"><input type="button" value="BUY NOW"></a> -->
+                        
                     </div>
                 </div>
             </div>
@@ -298,9 +299,11 @@
                     </div>
                 </a>
             </div>
-            <h1>Featured Products</h1>
+            
+            <h1 style="text-align: center;">Featured Products</h1>
             <hr>
             <div class="products-container">
+                
                 {% for product in products|slice:":12" %}
                     <a href="{% url 'showcase:product_detail' product.id %}"><div class="product-container">
                         <div class="product-img-container"><img src="{{ product.image.url }}" alt="product">

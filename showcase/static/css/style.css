@@ -519,13 +519,13 @@ a {
   height: 100%;
 }
 .show-desc1{
-  background: rgba(202, 40, 40, 0.63);
+  /* background: rgba(202, 40, 40, 0.63); */
 }
 .show-desc2 {
-  background: rgba(56, 40, 202, 0.63);
+  /* background: rgba(56, 40, 202, 0.63); */
 }
 .show-desc3{
-  background: rgba(59, 202, 40, 0.63);
+  /* background: rgba(59, 202, 40, 0.63); */
 }
 .showcase-description h2,
 h3 {
@@ -608,36 +608,43 @@ h3 {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  align-items: center;
   /* width: 80%; */
 }
 
 .product-container {
   display: flex;
   flex-direction: column;
-  padding: 5px;
+  /* padding: 5px; */
   background: #fff;
   /* align-items: center; */
-  max-width: 10.625rem;
+  max-width: 10rem;
+  min-width: 9.2rem;
   height: fit-content;
   /* border: 0.125rem solid rgb(223, 217, 217); */
   border-radius: 0.3125rem;
   box-shadow: 0 0 6px 0px rgb(0 0 0 / 25%);
-  margin: 0.3125rem 0.3rem 1.25rem 0;
+  margin: 0.3125rem 0.2rem 1.25rem 0;
   position: relative;
 }
 
 .product-img-container {
   width: 100%;
   overflow: hidden;
-  height: 18%;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
+  margin: 0;
+}
+
+.product-info{
+  padding: 4px;
 }
 
 .product-img-container img {
-  width: 100%;
+  width: 120%;
   height: 100%;
   margin: 0;
 }
@@ -646,8 +653,8 @@ h3 {
   background-color: #0096FF;
   margin: -40% auto 0 80%;
   /* float: right; */
-  width: 2.5rem;
-  height: 3rem;
+  width: 2rem;
+  height: 2.5rem;
   border-radius: 0.1375rem;
   display: flex;
   align-items: center;
@@ -660,7 +667,7 @@ h3 {
 
 .product-container .save p {
   color: #fff;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   font-weight: bolder;
   padding: 0;
   margin: 0;
@@ -670,7 +677,7 @@ h3 {
   color: #fff;
   padding: 0;
   margin: 0;
-  font-size: 0.7rem;
+  font-size: 0.5rem;
 }
 
 .product-container .save p span {
@@ -693,7 +700,7 @@ h3 {
   color: rgb(75, 75, 75);
   padding: 0;
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 13px;
 }
 
 
@@ -724,8 +731,8 @@ h3 {
 
 .product-container .cart-price .cart {
   background-color: #0096FF;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 0.3125rem;
   display: flex;
   align-items: center;
@@ -745,7 +752,7 @@ h3 {
 
 .product-container .cart-price .price {
   margin-left: 40%;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: bolder;
   color: rgb(54, 53, 53);
   position: absolute;
